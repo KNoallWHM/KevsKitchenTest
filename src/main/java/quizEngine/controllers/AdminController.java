@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
-import quizEngine.entities.QuizQuestion;
-import quizEngine.entities.QuizQuestionDAO;
+import quizEngine.entities.BasicIngredients;
+import quizEngine.entities.BasicIngredientsDAO;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,66 +23,66 @@ import java.util.List;
 @RequestMapping(value="/admin/")
 public class AdminController {
 
-    private final QuizQuestionDAO quizQuestionDAO;
+    private final BasicIngredientsDAO basicIngredientsDAO;
 
     @Autowired
-    public AdminController(QuizQuestionDAO quizQuestionDAO) {
-        Assert.notNull(quizQuestionDAO, "QuizQuestionDAO must not be null!");
-        this.quizQuestionDAO = quizQuestionDAO;
+    public AdminController(BasicIngredientsDAO basicIngredientsDAO) {
+        Assert.notNull(basicIngredientsDAO, "BasicIngredientsDAO must not be null!");
+        this.basicIngredientsDAO = basicIngredientsDAO;
     }
 
     @RequestMapping(value="/")
-    public String allQuestions(ModelMap model) {
-        Iterable<QuizQuestion> quizQuestions = quizQuestionDAO.findAll();
-        model.addAttribute("quizQuestions",quizQuestions);
-        return "admin/viewAllQuestions";
+    public String allRecipes(ModelMap model) {
+        Iterable<BasicIngredients> basicIngredientses = basicIngredientsDAO.findAll();
+        model.addAttribute("basicIngredients",basicIngredientses);
+        return "admin/viewAllRecipes";
     }
 
-    @RequestMapping(value="addQuestion")
-    public String addQuestion(ModelMap model) {
-        model.addAttribute("quizQuestion", new QuizQuestion());
-        return "admin/newQuestion";
+    @RequestMapping(value="inputRecipe")
+    public String addRecipe(ModelMap model) {
+        model.addAttribute("basicIngredient", new BasicIngredients());
+        return "admin/inputRecipe";
     }
 
-    @RequestMapping(value="saveNewQuestion")
-    public View saveNewQuestion(QuizQuestion quizQuestion) {
-        quizQuestionDAO.save(quizQuestion);
+    @RequestMapping(value="saveNewRecipe")
+    public View saveNewRecipe(BasicIngredients basicIngredients) {
+        basicIngredientsDAO.save(basicIngredients);
         return new RedirectView("/admin/");
     }
 
-    @RequestMapping(value="viewQuestion")
-    public String viewQuestion(long id,ModelMap model) {
-        QuizQuestion quizQuestion = quizQuestionDAO.findOne(id);
-        model.addAttribute("quizQuestion",quizQuestion);
+    @RequestMapping(value="viewRecipe")
+    public String viewRecipe(long id,ModelMap model) {
+        BasicIngredients basicIngredients = basicIngredientsDAO.findOne(id);
+        model.addAttribute("basicIngredients", basicIngredients);
         return "admin/editQuestion";
     }
 
-    @RequestMapping(value="deleteQuestion")
-    public View deleteQuestion(long id) {
-        QuizQuestion quizQuestion = quizQuestionDAO.findOne(id);
-        quizQuestionDAO.delete(quizQuestion);
+    @RequestMapping(value="deleteRecipe")
+    public View deleteRecipe(long id) {
+        BasicIngredients basicIngredients = basicIngredientsDAO.findOne(id);
+        basicIngredientsDAO.delete(basicIngredients);
         return new RedirectView("/admin/");
     }
-    @RequestMapping(value="saveEditedQuestion")
-    public View saveEditedQuestion(QuizQuestion quizQuestion) {
-        quizQuestionDAO.save(quizQuestion);
+    @RequestMapping(value="saveEditedRecipe")
+    public View saveEditedRecipe(BasicIngredients basicIngredients) {
+        basicIngredientsDAO.save(basicIngredients);
         return new RedirectView("/admin/");
     }
 
-    @RequestMapping("uploadQuestions")
-    public String uploadQuestions() {
+    @RequestMapping("uploadRecipes")
+    public String uploadRecipes() {
         return "admin/uploadQuestions";
     }
 
-    @RequestMapping("saveUploadedQuestions")
-    public View saveUploadedQuestions(MultipartFile QuizQuestionsFile) {
+    @RequestMapping("saveUploadedRecipes")
+    public View saveUploadedRecipes(MultipartFile RecipesFile) {
 
         String returnView = "";
-        if (!QuizQuestionsFile.isEmpty()) {
+        if (!RecipesFile.isEmpty()) {
             try {
-                Files.write(Paths.get(QuizQuestionsFile.getOriginalFilename()),QuizQuestionsFile.getBytes());
+                Files.write(Paths.get(RecipesFile.getOriginalFilename()),RecipesFile.getBytes());
                 System.out.println("-------- File Upload Successful");
-                addUploadToDatabase(QuizQuestionsFile.getOriginalFilename());
+                addUploadToDatabase(RecipesFile.getOriginalFilename());
             } catch (IOException | RuntimeException e) {
                 e.printStackTrace();
             }
@@ -95,22 +95,21 @@ public class AdminController {
 
     private void addUploadToDatabase(String filePath) {
         try {
-            Path quizQuestionUploadedFilePath = Paths.get(filePath);
+            Path RecipesUploadedFilePath = Paths.get(filePath);
             ObjectMapper mapper = new ObjectMapper();
-            List<QuizQuestion> uploadedQuestions = mapper.readValue(Files.newInputStream(quizQuestionUploadedFilePath), new TypeReference<List<QuizQuestion>>(){});
-            for(QuizQuestion uploadedQuizQuestion : uploadedQuestions) {
-                QuizQuestion quizQuestion = new QuizQuestion();
-                quizQuestion.setCategory(uploadedQuizQuestion.getCategory());
-                quizQuestion.setQuestionType(uploadedQuizQuestion.getQuestionType());
-                quizQuestion.setDifficulty(uploadedQuizQuestion.getDifficulty());
-                quizQuestion.setQuestion(uploadedQuizQuestion.getQuestion());
-                quizQuestion.setCorrectMultipleChoiceAnswer(uploadedQuizQuestion.getCorrectMultipleChoiceAnswer());
-                quizQuestion.setWrongMultipleChoiceAnswer1(uploadedQuizQuestion.getWrongMultipleChoiceAnswer1());
-                quizQuestion.setWrongMultipleChoiceAnswer2(uploadedQuizQuestion.getWrongMultipleChoiceAnswer2());
-                quizQuestion.setWrongMultipleChoiceAnswer3(uploadedQuizQuestion.getWrongMultipleChoiceAnswer3());
-                quizQuestion.setTrueOrFalse(uploadedQuizQuestion.isTrueOrFalse());
-                quizQuestion.setCodeLines(uploadedQuizQuestion.getCodeLines());
-                quizQuestionDAO.save(quizQuestion);
+            List<BasicIngredients> uploadedRecipes = mapper.readValue(Files.newInputStream(RecipesUploadedFilePath), new TypeReference<List<BasicIngredients>>(){});
+            for(BasicIngredients uploadedRecipe : uploadedRecipes) {
+                BasicIngredients basicIngredients = new BasicIngredients();
+                basicIngredients.setMeat(uploadedRecipe.getMeat());
+                basicIngredients.setVeggies(uploadedRecipe.getVeggies());
+                basicIngredients.setFruits(uploadedRecipe.getFruits());
+                basicIngredients.setFish(uploadedRecipe.getFish());
+                basicIngredients.setSeasonings(uploadedRecipe.getSeasonings());
+                basicIngredients.setGrains(uploadedRecipe.getGrains());
+                basicIngredients.setDairy(uploadedRecipe.getDairy());
+
+                basicIngredients.setCodeLines(uploadedRecipe.getCodeLines());
+                basicIngredientsDAO.save(basicIngredients);
             }
         } catch (IOException ioe) {
             System.out.println("Issue reading List from JSON file");

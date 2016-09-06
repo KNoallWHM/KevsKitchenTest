@@ -1,6 +1,5 @@
 package quizEngine.controllers;
 
-import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,38 +7,40 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
-import quizEngine.entities.QuizQuestion;
-import quizEngine.entities.QuizQuestionDAO;
+import quizEngine.entities.BasicIngredients;
+import quizEngine.entities.BasicIngredientsDAO;
 import quizEngine.entities.Tracker;
 import quizEngine.entities.TrackerDAO;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Controller
 @RequestMapping(value="/quiz/")
 public class QuizController {
 
-    private final QuizQuestionDAO quizQuestionDAO;
+    private final BasicIngredientsDAO basicIngredientsDAO;
     private final TrackerDAO trackerDAO;
 
 
     @Autowired
-    public QuizController(QuizQuestionDAO quizQuestionDAO, TrackerDAO trackerDAO) {
-        Assert.notNull(quizQuestionDAO, "QuizQuestionDAO must not be null!");
+    public QuizController(BasicIngredientsDAO basicIngredientsDAO, TrackerDAO trackerDAO) {
+        Assert.notNull(basicIngredientsDAO, "BasicIngredientsDAO must not be null!");
         Assert.notNull(trackerDAO, "TrackerDAO must not be null");
         this.trackerDAO = trackerDAO;
-        this.quizQuestionDAO = quizQuestionDAO;
+        this.basicIngredientsDAO = basicIngredientsDAO;
     }
 
 
     @RequestMapping(value = "/")
     public String dashboard(ModelMap model) {
-        model.addAttribute("categories", QuizQuestion.Category.values());
-        model.addAttribute("QuizTypes", QuizQuestion.QuizType.values());
-        model.addAttribute("questionTypes", QuizQuestion.QuestionType.values());
-        model.addAttribute("difficulties", QuizQuestion.Difficulty.values());
+        model.addAttribute("meats", BasicIngredients.Meat.values());
+        model.addAttribute("vegetables", BasicIngredients.Veggies.values());
+        model.addAttribute("fruits", BasicIngredients.Fruits.values());
+        model.addAttribute("fishies", BasicIngredients.Fish.values());
+        model.addAttribute("seasonings", BasicIngredients.Seasonings.values());
+        model.addAttribute("grain", BasicIngredients.Grains.values());
+        model.addAttribute("dairy", BasicIngredients.Dairy.values());
         return "quiz/index";
     }
 
@@ -63,61 +64,61 @@ public class QuizController {
 
 
 
-    @RequestMapping(value = "startQuiz")
-    public View startQuiz(String name, String email, String category, String quizType, String questionType, String difficulty, HttpServletRequest request) {
-        request.getSession().setAttribute("name", name);
-        request.getSession().setAttribute("email", email);
-        request.getSession().setAttribute("category", category);
-        request.getSession().setAttribute("quizType", quizType);
-        request.getSession().setAttribute("questionType", questionType);
-        request.getSession().setAttribute("difficulty", difficulty);
+    @RequestMapping(value = "searchRecipies")
+    public View startQuiz(String meat, String veggies, String fruits, String fish, String seasonings, String grains, String dairy, HttpServletRequest request) {
+        request.getSession().setAttribute("meat", meat);
+        request.getSession().setAttribute("veggies", veggies);
+        request.getSession().setAttribute("fruits", fruits);
+        request.getSession().setAttribute("fish", fish);
+        request.getSession().setAttribute("seasonings", seasonings);
+        request.getSession().setAttribute("grains", grains);
+        request.getSession().setAttribute("dairy", dairy);
         Tracker tracker = new Tracker();
-        tracker.setEmail(email);
-        tracker.setName(name);
 
-        Iterable<QuizQuestion> quizQuestions = null;
+
+        Iterable<BasicIngredients> quizQuestions = null;
         int numberOfQuestions = 0;
 
         // category!=ALL && questionType==ALL && difficulty==ALL
-        if (!category.equals(QuizQuestion.Category.ALL) && questionType.equals(QuizQuestion.QuestionType.ALL) && difficulty.equals(QuizQuestion.Difficulty.ALL)) {
-            quizQuestions = quizQuestionDAO.findByCategory(QuizQuestion.Category.valueOf(category));
-        }
-        // category!=ALL && questionType!=ALL && difficulty==ALL
-        else if (!category.equals(QuizQuestion.Category.ALL) && !questionType.equals(QuizQuestion.QuestionType.ALL) && difficulty.equals(QuizQuestion.Difficulty.ALL)) {
-            quizQuestions = quizQuestionDAO.findByCategoryAndQuestionType(QuizQuestion.Category.valueOf(category), QuizQuestion.QuestionType.valueOf(questionType));
-        }
-        // category!=ALL && questionType!=ALL && difficulty!=ALL
-        else if (!category.equals(QuizQuestion.Category.ALL) && !questionType.equals(QuizQuestion.QuestionType.ALL) && !difficulty.equals(QuizQuestion.Difficulty.ALL)) {
-            quizQuestions = quizQuestionDAO.findByCategoryAndQuestionTypeAndDifficulty(QuizQuestion.Category.valueOf(category), QuizQuestion.QuestionType.valueOf(questionType), QuizQuestion.Difficulty.valueOf(difficulty));
-        }
-        // category==ALL && questionType!=ALL && difficulty==ALL
-        else if (category.equals(QuizQuestion.Category.ALL) && !questionType.equals(QuizQuestion.QuestionType.ALL) && difficulty.equals(QuizQuestion.Difficulty.ALL)) {
-            quizQuestions = quizQuestionDAO.findByQuestionType(QuizQuestion.QuestionType.valueOf(questionType));
-        }
-        // category==ALL && questionType!=ALL && difficulty!=ALL
-        else if (category.equals(QuizQuestion.Category.ALL) && !questionType.equals(QuizQuestion.QuestionType.ALL) && !difficulty.equals(QuizQuestion.Difficulty.ALL)) {
-            quizQuestions = quizQuestionDAO.findByQuestionTypeAndDifficulty(QuizQuestion.QuestionType.valueOf(questionType), QuizQuestion.Difficulty.valueOf(difficulty));
-        }
-        // category==ALL && questionType==ALL && difficulty!=ALL
-        else if (category.equals(QuizQuestion.Category.ALL) && questionType.equals(QuizQuestion.QuestionType.ALL) && !difficulty.equals(QuizQuestion.Difficulty.ALL)) {
-            quizQuestions = quizQuestionDAO.findByDifficulty(QuizQuestion.Difficulty.valueOf(difficulty));
-        }
-        // category!=ALL && questionType==ALL && difficulty!=ALL
-        else if (!category.equals(QuizQuestion.Category.ALL) && questionType.equals(QuizQuestion.QuestionType.ALL) && !difficulty.equals(QuizQuestion.Difficulty.ALL)) {
-            quizQuestions = quizQuestionDAO.findByCategoryAndDifficulty(QuizQuestion.Category.valueOf(category), QuizQuestion.Difficulty.valueOf(difficulty));
-        }
+//        if (!category.equals(BasicIngredients.Category.ALL) && questionType.equals(BasicIngredients.QuestionType.ALL) && difficulty.equals(BasicIngredients.Difficulty.ALL)) {
+//            quizQuestions = basicIngredientsDAO.findByCategory(BasicIngredients.Category.valueOf(category));
+//        }
+//        // category!=ALL && questionType!=ALL && difficulty==ALL
+//        else if (!category.equals(BasicIngredients.Category.ALL) && !questionType.equals(BasicIngredients.QuestionType.ALL) && difficulty.equals(BasicIngredients.Difficulty.ALL)) {
+//            quizQuestions = basicIngredientsDAO.findByCategoryAndQuestionType(BasicIngredients.Category.valueOf(category), BasicIngredients.QuestionType.valueOf(questionType));
+//        }
+//        // category!=ALL && questionType!=ALL && difficulty!=ALL
+//        else if (!category.equals(BasicIngredients.Category.ALL) && !questionType.equals(BasicIngredients.QuestionType.ALL) && !difficulty.equals(BasicIngredients.Difficulty.ALL)) {
+//            quizQuestions = basicIngredientsDAO.findByCategoryAndQuestionTypeAndDifficulty(BasicIngredients.Category.valueOf(category), BasicIngredients.QuestionType.valueOf(questionType), BasicIngredients.Difficulty.valueOf(difficulty));
+//        }
+//        // category==ALL && questionType!=ALL && difficulty==ALL
+//        else if (category.equals(BasicIngredients.Category.ALL) && !questionType.equals(BasicIngredients.QuestionType.ALL) && difficulty.equals(BasicIngredients.Difficulty.ALL)) {
+//            quizQuestions = basicIngredientsDAO.findByQuestionType(BasicIngredients.QuestionType.valueOf(questionType));
+//        }
+//        // category==ALL && questionType!=ALL && difficulty!=ALL
+//        else if (category.equals(BasicIngredients.Category.ALL) && !questionType.equals(BasicIngredients.QuestionType.ALL) && !difficulty.equals(BasicIngredients.Difficulty.ALL)) {
+//            quizQuestions = basicIngredientsDAO.findByQuestionTypeAndDifficulty(BasicIngredients.QuestionType.valueOf(questionType), BasicIngredients.Difficulty.valueOf(difficulty));
+//        }
+//        // category==ALL && questionType==ALL && difficulty!=ALL
+//        else if (category.equals(BasicIngredients.Category.ALL) && questionType.equals(BasicIngredients.QuestionType.ALL) && !difficulty.equals(BasicIngredients.Difficulty.ALL)) {
+//            quizQuestions = basicIngredientsDAO.findByDifficulty(BasicIngredients.Difficulty.valueOf(difficulty));
+//        }
+//        // category!=ALL && questionType==ALL && difficulty!=ALL
+//        else if (!category.equals(BasicIngredients.Category.ALL) && questionType.equals(BasicIngredients.QuestionType.ALL) && !difficulty.equals(BasicIngredients.Difficulty.ALL)) {
+//            quizQuestions = basicIngredientsDAO.findByCategoryAndDifficulty(BasicIngredients.Category.valueOf(category), BasicIngredients.Difficulty.valueOf(difficulty));
+//        }
         if (quizQuestions != null) {
             numberOfQuestions = countIterable(quizQuestions);
         }
         // category==ALL && questionType==ALL && difficulty==ALL || no results
         if (quizQuestions == null || numberOfQuestions < 1) {
-            quizQuestions = quizQuestionDAO.findAll();
+            quizQuestions = basicIngredientsDAO.findAll();
             numberOfQuestions = countIterable(quizQuestions);
         }
         int i = 0;
-        HashMap<Integer, QuizQuestion> quizQuestionsHashMap = new HashMap<>();
-        for (QuizQuestion quizQuestion : quizQuestions) {
-            quizQuestionsHashMap.put(i, quizQuestion);
+        HashMap<Integer, BasicIngredients> quizQuestionsHashMap = new HashMap<>();
+        for (BasicIngredients basicIngredients : quizQuestions) {
+            quizQuestionsHashMap.put(i, basicIngredients);
             i++;
         }
         trackerDAO.save(tracker);
@@ -137,7 +138,7 @@ public class QuizController {
 
 
         ArrayList<Integer> usedQuestions = (ArrayList<Integer>) request.getSession().getAttribute("usedQuestions");
-        HashMap<Integer, QuizQuestion> quizQuestionsHashMap = (HashMap<Integer, QuizQuestion>) request.getSession().getAttribute("quizQuestionsHashMap");
+        HashMap<Integer, BasicIngredients> quizQuestionsHashMap = (HashMap<Integer, BasicIngredients>) request.getSession().getAttribute("quizQuestionsHashMap");
         int numberOfQuestions = quizQuestionsHashMap.size();
         if (usedQuestions.size() >= numberOfQuestions) {
             return "quiz/quizResults";
@@ -158,43 +159,7 @@ public class QuizController {
         return "quiz/question";
     }
 
-    @RequestMapping(value = "questionAnswer")
-    public String questionAnswer(String multiAnswer, String trueFalseAnswer, ModelMap model, HttpServletRequest request) {
-        Tracker tracker = (Tracker) request.getSession().getAttribute("kevin");
-        HashMap<Integer, QuizQuestion> quizQuestionsHashMap = (HashMap<Integer, QuizQuestion>) request.getSession().getAttribute("quizQuestionsHashMap");
-        int questionNumber = (Integer) request.getSession().getAttribute("questionNumber");
-        QuizQuestion quizQuestion = quizQuestionsHashMap.get(questionNumber);
-        model.addAttribute("quizQuestion", quizQuestion);
-        model.remove("correct");
-        model.remove("incorrect");
 
-
-        if (quizQuestion.getQuestionType().equals(QuizQuestion.QuestionType.MULTIPLE_CHOICE)) {
-            if (multiAnswer != null && multiAnswer.equalsIgnoreCase("yes")) {
-                model.addAttribute("correct", "Right on Bro! Keep calm and code on");
-//                int c = tracker.getCorrect();
-                tracker.setCorrect(tracker.getCorrect()+1);
-            } else {
-                model.addAttribute("incorrect", "Sorry DUUUDE....Better luck next time!");
-//                int w = tracker.getIncorrect();
-                tracker.setIncorrect(tracker.getIncorrect()+1);
-                // answersWrong();
-            }
-        } else if (quizQuestion.getQuestionType().equals(QuizQuestion.QuestionType.TRUE_FALSE)) {
-            if (trueFalseAnswer != null && quizQuestion.isTrueOrFalse() == Boolean.valueOf(trueFalseAnswer)) {
-                model.addAttribute("correct", "Right on Bro! Keep calm and code on");
-                int c = tracker.getCorrect();
-                tracker.setCorrect(tracker.getCorrect()+1);
-                // answersCorrect();
-            } else {
-                model.addAttribute("incorrect", "Sorry DUUUDE....Better luck next time!");
-                int w = tracker.getIncorrect();
-                tracker.setIncorrect(tracker.getIncorrect()+1);
-                //answersWrong();
-            }
-        }
-        return "quiz/answer";
-    }
 
 
     private int countIterable(Iterable<?> it) {

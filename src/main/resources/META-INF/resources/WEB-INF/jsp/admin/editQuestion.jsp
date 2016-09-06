@@ -31,7 +31,7 @@
 </head>
 <body>
 <h1>Edit Question</h1>
-<form:form id="editQuestionForm" commandName="quizQuestion" method="POST" action="/admin/saveEditedQuestion">
+<form:form id="editQuestionForm" commandName="basicIngredients" method="POST" action="/admin/saveEditedQuestion">
     <form:hidden path="id" id="id" />
     <form:label path="category">Question Category:</form:label>
     <form:select path="category" id="category">

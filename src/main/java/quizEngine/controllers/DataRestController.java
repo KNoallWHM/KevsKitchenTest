@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import quizEngine.entities.QuizQuestion;
-import quizEngine.entities.QuizQuestionDAO;
+import quizEngine.entities.BasicIngredients;
+import quizEngine.entities.BasicIngredientsDAO;
 
 /**
  * Created by Superduo on 8/22/16.
@@ -14,16 +14,16 @@ import quizEngine.entities.QuizQuestionDAO;
 @RequestMapping("/restData/")
 public class DataRestController {
 
-    private final QuizQuestionDAO quizQuestionDAO;
+    private final BasicIngredientsDAO basicIngredientsDAO;
 
     @Autowired
-    public DataRestController(QuizQuestionDAO quizQuestionDAO) {
-        Assert.notNull(quizQuestionDAO, "QuizQuestionDAO must not be null!");
-        this.quizQuestionDAO = quizQuestionDAO;
+    public DataRestController(BasicIngredientsDAO basicIngredientsDAO) {
+        Assert.notNull(basicIngredientsDAO, "BasicIngredientsDAO must not be null!");
+        this.basicIngredientsDAO = basicIngredientsDAO;
     }
 
     @RequestMapping("getAllQuestions")
-    public Iterable<QuizQuestion> getAllQuestions() {
-        return quizQuestionDAO.findAll();
+    public Iterable<BasicIngredients> getAllRecipes() {
+        return basicIngredientsDAO.findAll();
     }
 }
