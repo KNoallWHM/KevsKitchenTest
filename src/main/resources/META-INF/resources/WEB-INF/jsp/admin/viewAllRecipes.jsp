@@ -12,24 +12,24 @@
 <table>
     <tr>
         <th> Ingredient Id </th>
-        <th> | </th>
+        <th> : </th>
         <th> Meat </th>
-        <th> | </th>
+        <th> : </th>
         <th> Veggies </th>
-        <th> | </th>
+        <th> : </th>
         <th> Fruit </th>
-        <th> | </th>
+        <th> : </th>
         <th> Fish </th>
-        <th> | </th>
+        <th> : </th>
         <th> Seasonings </th>
-        <th> | </th>
+        <th> : </th>
         <th> Grains </th>
         <th> | </th>
         <th> Dairy </th>
     </tr>
     <c:forEach var="basicIngredients" items="${basicIngredients}">
         <tr>
-            <td><a href="/admin/viewIngredient?id=${basicIngredients.id}"><c:out value="${basicIngredients.id}" /></a></td>
+            <td><a href="/admin/viewRecipe?id=${basicIngredients.id}"><c:out value="${basicIngredients.id}" /></a></td>
             <th> | </th>
             <td><c:out value="${basicIngredients.meat}" /></td>
             <th> | </th>
@@ -68,35 +68,35 @@
     </c:forEach>
 </table
 
-    <%--<br>--%>
-    <%--<br>--%>
-    <%--<br>--%>
-<%--<table>--%>
+    <br>
+    <br>
+    <br>
+<table>
 
-<%--<tr>--%>
-    <%--<th> recipe Id</th>--%>
-    <%--<th> | </th>--%>
-    <%--<th> Cook time </th>--%>
-    <%--<th> | </th>--%>
-    <%--<th> Ingredients </th>--%>
-    <%--<th> | </th>--%>
-    <%--<th> difficulty </th>--%>
-    <%--<th> | </th>--%>
-<%--</tr>--%>
-    <%--<c:forEach var="stepByStep" items="${stepByStep}">--%>
+<tr>
+    <th> recipe Id</th>
+    <th> | </th>
+    <th> Cook time </th>
+    <th> | </th>
+    <th> Ingredients </th>
+    <th> | </th>
+    <th> difficulty </th>
+    <th> | </th>
+</tr>
+    <c:forEach var="stepByStep" items="${stepByStep}">
 
-    <%--<tr>--%>
-        <%--<td><a href="/admin/viewIngredient?id=${basicIngredients.id}"><c:out value="${basicIngredients.id}" /></a></td>--%>
-        <%--<th> | </th>--%>
-        <%--<td><c:out value="${stepByStep.cooktime}" /></td>--%>
-        <%--<th> | </th>--%>
-        <%--<td><c:out value="${stepByStep.ingredients}" /></td>--%>
-        <%--<th> | </th>--%>
-        <%--<td><c:out value="${stepByStep.difficulty}" /></td>--%>
+    <tr>
+        <td><a href="/admin/viewRecipe?id=${stepByStep.id}"><c:out value="${stepByStep.id}" /></a></td>
+        <th> | </th>
+        <td><c:out value="${stepByStep.cooktime}" /></td>
+        <th> | </th>
+        <td><c:out value="${stepByStep.ingredients}" /></td>
+        <th> | </th>
+        <td><c:out value="${stepByStep.difficulty}" /></td>
 
 
-    <%--</tr>--%>
-    <%--</c:forEach>--%>
+    </tr>
+    </c:forEach>
 
 
 </table>

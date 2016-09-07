@@ -21,25 +21,22 @@ public class BasicIngredients {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
+
     private Meat meat;
 
-    @NotNull
+
     private Veggies veggies;
 
-    @NotNull
+
     private Fruits fruits;
 
-    @NotNull
+
     private Fish fish;
 
-    @NotNull
     private Seasonings seasonings;
 
-    @NotNull
     private Grains grains;
 
-    @NotNull
     private Dairy dairy;
 
 

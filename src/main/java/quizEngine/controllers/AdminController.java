@@ -12,6 +12,8 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 import quizEngine.entities.BasicIngredients;
 import quizEngine.entities.BasicIngredientsDAO;
+import quizEngine.entities.StepByStep;
+import quizEngine.entities.StepByStepDAO;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,48 +26,61 @@ import java.util.List;
 public class AdminController {
 
     private final BasicIngredientsDAO basicIngredientsDAO;
+//    private final StepByStepDAO stepByStepDAO;
 
     @Autowired
-    public AdminController(BasicIngredientsDAO basicIngredientsDAO) {
+    public AdminController(BasicIngredientsDAO basicIngredientsDAO, StepByStepDAO stepByStepDAO) {
         Assert.notNull(basicIngredientsDAO, "BasicIngredientsDAO must not be null!");
+//        Assert.notNull(stepByStepDAO, "StepByStepDAO must not be null!");
         this.basicIngredientsDAO = basicIngredientsDAO;
+//        this.stepByStepDAO = stepByStepDAO;
     }
 
-    @RequestMapping(value="/")
+    @RequestMapping(value = "/")
     public String allRecipes(ModelMap model) {
         Iterable<BasicIngredients> basicIngredientses = basicIngredientsDAO.findAll();
-        model.addAttribute("basicIngredients",basicIngredientses);
+//        Iterable<StepByStep> stepByStep = stepByStepDAO.findAll();
+        model.addAttribute("basicIngredients", basicIngredientses);
+//        model.addAttribute("stepBystep", stepByStep);
         return "admin/viewAllRecipes";
     }
 
-    @RequestMapping(value="inputRecipe")
+    @RequestMapping(value = "inputRecipe")
     public String addRecipe(ModelMap model) {
         model.addAttribute("basicIngredient", new BasicIngredients());
+        model.addAttribute("stepByStep", new StepByStep());
         return "admin/inputRecipe";
     }
 
-    @RequestMapping(value="saveNewRecipe")
-    public View saveNewRecipe(BasicIngredients basicIngredients) {
+    @RequestMapping(value = "saveNewRecipe")
+    public View saveNewRecipe(BasicIngredients basicIngredients, StepByStep stepByStep) {
         basicIngredientsDAO.save(basicIngredients);
+//        stepByStepDAO.save(stepByStep);
         return new RedirectView("/admin/");
     }
 
-    @RequestMapping(value="viewRecipe")
-    public String viewRecipe(long id,ModelMap model) {
+    @RequestMapping(value = "viewRecipe")
+    public String viewRecipe(long id, ModelMap model) {
         BasicIngredients basicIngredients = basicIngredientsDAO.findOne(id);
+//        StepByStep stepByStep = stepByStepDAO.findOne(id);
         model.addAttribute("basicIngredients", basicIngredients);
+//        model.addAttribute("stepByStep", stepByStep);
         return "admin/editQuestion";
     }
 
-    @RequestMapping(value="deleteRecipe")
+    @RequestMapping(value = "deleteRecipe")
     public View deleteRecipe(long id) {
         BasicIngredients basicIngredients = basicIngredientsDAO.findOne(id);
+//        StepByStep stepByStep = stepByStepDAO.findOne(id);
         basicIngredientsDAO.delete(basicIngredients);
+//        stepByStepDAO.delete(stepByStep);
         return new RedirectView("/admin/");
     }
-    @RequestMapping(value="saveEditedRecipe")
-    public View saveEditedRecipe(BasicIngredients basicIngredients) {
+
+    @RequestMapping(value = "saveEditedRecipe")
+    public View saveEditedRecipe(BasicIngredients basicIngredients, StepByStep stepByStep) {
         basicIngredientsDAO.save(basicIngredients);
+//        stepByStepDAO.save(stepByStep);
         return new RedirectView("/admin/");
     }
 
@@ -80,7 +95,7 @@ public class AdminController {
         String returnView = "";
         if (!RecipesFile.isEmpty()) {
             try {
-                Files.write(Paths.get(RecipesFile.getOriginalFilename()),RecipesFile.getBytes());
+                Files.write(Paths.get(RecipesFile.getOriginalFilename()), RecipesFile.getBytes());
                 System.out.println("-------- File Upload Successful");
                 addUploadToDatabase(RecipesFile.getOriginalFilename());
             } catch (IOException | RuntimeException e) {
@@ -95,27 +110,45 @@ public class AdminController {
 
     private void addUploadToDatabase(String filePath) {
         try {
-            Path RecipesUploadedFilePath = Paths.get(filePath);
+            Path IngredientsUploadedFilePath = Paths.get(filePath);
             ObjectMapper mapper = new ObjectMapper();
-            List<BasicIngredients> uploadedRecipes = mapper.readValue(Files.newInputStream(RecipesUploadedFilePath), new TypeReference<List<BasicIngredients>>(){});
-            for(BasicIngredients uploadedRecipe : uploadedRecipes) {
+            List<BasicIngredients> uploadedIngredients = mapper.readValue(Files.newInputStream(IngredientsUploadedFilePath), new TypeReference<List<BasicIngredients>>() {
+            });
+            for (BasicIngredients uploadedingredient : uploadedIngredients) {
                 BasicIngredients basicIngredients = new BasicIngredients();
-                basicIngredients.setMeat(uploadedRecipe.getMeat());
-                basicIngredients.setVeggies(uploadedRecipe.getVeggies());
-                basicIngredients.setFruits(uploadedRecipe.getFruits());
-                basicIngredients.setFish(uploadedRecipe.getFish());
-                basicIngredients.setSeasonings(uploadedRecipe.getSeasonings());
-                basicIngredients.setGrains(uploadedRecipe.getGrains());
-                basicIngredients.setDairy(uploadedRecipe.getDairy());
+                basicIngredients.setMeat(uploadedingredient.getMeat());
+                basicIngredients.setVeggies(uploadedingredient.getVeggies());
+                basicIngredients.setFruits(uploadedingredient.getFruits());
+                basicIngredients.setFish(uploadedingredient.getFish());
+                basicIngredients.setSeasonings(uploadedingredient.getSeasonings());
+                basicIngredients.setGrains(uploadedingredient.getGrains());
+                basicIngredients.setDairy(uploadedingredient.getDairy());
 
-                basicIngredients.setCodeLines(uploadedRecipe.getCodeLines());
                 basicIngredientsDAO.save(basicIngredients);
             }
         } catch (IOException ioe) {
             System.out.println("Issue reading List from JSON file");
             ioe.printStackTrace();
-        }
+          }
+//        try {
+//            Path RecipesUploadedFilePath = Paths.get(filePath);
+//            ObjectMapper mapper = new ObjectMapper();
+//            List<StepByStep> uploadedRecipeDirections = mapper.readValue(Files.newInputStream(RecipesUploadedFilePath), new TypeReference<List<StepByStep>>() {
+//            });
+//            for (StepByStep uploadedRecipe : uploadedRecipeDirections) {
+//                StepByStep stepByStep = new StepByStep();
+//                stepByStep.setCookTime(uploadedRecipe.getCookTime());
+//                stepByStep.setIngredients(uploadedRecipe.getIngredients());
+//                stepByStep.setDirections(uploadedRecipe.getDirections());
+//
+//
+//                stepByStepDAO.save(stepByStep);
+//            }
+//        } catch (IOException ioe) {
+//            System.out.println("Issue reading List from JSON file");
+//            ioe.printStackTrace();
+//        }
+
+
     }
-
-
 }
