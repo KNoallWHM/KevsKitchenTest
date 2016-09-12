@@ -1,13 +1,13 @@
 package quizEngine.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
  * Created by Superduo on 9/6/16.
  */
+@Entity
+@Table (name="Step_By_Step")
 public class StepByStep {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

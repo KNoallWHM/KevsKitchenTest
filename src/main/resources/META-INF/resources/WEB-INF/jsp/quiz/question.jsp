@@ -5,7 +5,7 @@
 <title>QUIZ QUESTION</title>
 
 <head>
-    <link type="text/css" rel="stylesheet" href="/css/question.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/homepage.css"/>
 </head>
 <body background="http://wallpapercave.com/wp/gB3sgTh.jpg">
 <h1>QUIZ QUESTION</h1>

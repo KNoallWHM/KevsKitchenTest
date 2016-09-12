@@ -46,13 +46,13 @@
     </form:select>
     <br> <form:label path="seasonings">Seasonings and Amount:</form:label>
     <form:select path="seasonings" id="seasonings">
-        <form:options items="${Seasonings}" />
+        <form:checkbox path="seasonings" items="${Seasonings}" />
     </form:select>
     <br>
     <%--onchange="changeTypeDisplay();"--%>
     <form:label path="grains">Amount of Grains:</form:label>
     <form:select path="grains" id="grains" >
-        <form:options items="${Grains}" />
+        <form:checkbox path="grains" items="${Grains}" />
     </form:select>
     <br>
    <%--<form:textarea path=""> </form:textarea>--%>

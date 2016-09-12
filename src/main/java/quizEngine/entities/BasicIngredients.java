@@ -1,7 +1,10 @@
 package quizEngine.entities;
 
+import javafx.scene.control.TextArea;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,30 +18,47 @@ public class BasicIngredients {
     public static enum Seasonings { CINNAMON, PAPRIKA, TURMERIC, GINGER, NUTMEG, TARMORIND, CUMIN, OREGANO, CORDAMON, SALT, PEPPER, CLOVES, CHILI_POWDER };
     public static enum Grains { SPAGHETTI, TORTELLINI, SHELL, MACARONI, LASAGNA, PENNE, LINGUINI, FORFALLI, ANGEL_HAIR, WHITE_BREAD, WHEAT_BREAD, RYE, SOUR_DOUGH, CORN_BREAD, WHITE_RICE, BROWN_RICE, JASMINE, WHITE_FLOUR, WHEAT_FLOUR, COCONUT_FLOUR, WHITE_TORTILLA, WHEAT_TORTILLA, CORN_TORTILLA, OATS };
     public static enum Dairy { CHOCOLATE_MILK, MILK, BLOCK_CHEESE, SHREDDED_CHEESE, YOGURT, COTTAGE_CHEESE, CREAM_CHEESE, SOUR_CREAM, EGGS };
-
+    public static enum Toppings { KATSUP, MUSTARD, MAYONIAISE, MIRACLEWHIP, RANCH, STRAWBERRIES_N_CREAM, SYRUP, HONEY_MUSTARD, PEANUT_BUTTER, RASPBERRY_JAM, STRAWBERRY_JAM, HONEY_BUTTER };
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-
+    @NotNull
     private Meat meat;
 
-
+    @NotNull
     private Veggies veggies;
 
-
+    @NotNull
     private Fruits fruits;
 
-
+    @NotNull
     private Fish fish;
 
+    @NotNull
     private Seasonings seasonings;
 
+    @NotNull
     private Grains grains;
 
+    @NotNull
     private Dairy dairy;
 
+    @NotNull
+    private Toppings toppings;
+
+
+
+
+
+    public Toppings getToppings() {
+        return toppings;
+    }
+
+    public void setToppings(Toppings toppings) {
+        this.toppings = toppings;
+    }
 
     public Meat getMeat() {
         return meat;
@@ -96,10 +116,6 @@ public class BasicIngredients {
         this.dairy = dairy;
     }
 
-    private ArrayList<String> codeLines;
-
-
-
     public long getId() {
         return id;
     }
@@ -109,18 +125,5 @@ public class BasicIngredients {
     }
 
 
-
-
-
-
-    public ArrayList<String> getCodeLines() {
-        return codeLines;
-    }
-
-    public void setCodeLines(ArrayList<String> codeLines) {
-        this.codeLines = codeLines;
-    }
-
-
-//    public ArrayList<Integer> getTotalQuestions)
+    //    public ArrayList<Integer> getTotalQuestions)
 }

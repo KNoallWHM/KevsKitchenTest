@@ -12,94 +12,68 @@
 <table>
     <tr>
         <th> Ingredient Id </th>
-        <th> : </th>
+        <th> | </th>
+        <th> Name of Recipe </th>
+        <th> | </th>
         <th> Meat </th>
-        <th> : </th>
+        <th> | </th>
         <th> Veggies </th>
-        <th> : </th>
+        <th> | </th>
         <th> Fruit </th>
-        <th> : </th>
+        <th> | </th>
         <th> Fish </th>
-        <th> : </th>
+        <th> | </th>
         <th> Seasonings </th>
-        <th> : </th>
+        <th> | </th>
         <th> Grains </th>
         <th> | </th>
         <th> Dairy </th>
+        <th> | </th>
+        <th> Toppings </th>
+        <th> | </th>
+        <th> Directions </th>
     </tr>
     <c:forEach var="basicIngredients" items="${basicIngredients}">
         <tr>
-            <td><a href="/admin/viewRecipe?id=${basicIngredients.id}"><c:out value="${basicIngredients.id}" /></a></td>
-            <th> | </th>
+            <td><a href="/admin/viewBasicIngredient?id=${basicIngredients.id}"><c:out value="${basicIngredients.id}" /></a></td>
+            <th>|</th>
+            <td><textarea rows="1" cols="15"></textarea></td>
+            <th>|</th>
             <td><c:out value="${basicIngredients.meat}" /></td>
-            <th> | </th>
+            <th>|</th>
             <td><c:out value="${basicIngredients.veggies}" /></td>
-            <th> | </th>
+            <th>|</th>
             <td><c:out value="${basicIngredients.fruits}" /></td>
-            <th> | </th>
+            <th>|</th>
             <td><c:out value="${basicIngredients.fish}" /></td>
-            <th> | </th>
+            <th>|</th>
             <td><c:out value="${basicIngredients.seasonings}" /></td>
-            <th> | </th>
+            <th>|</th>
             <td><c:out value="${basicIngredients.grains}" /></td>
-            <th> | </th>
+            <th>|</th>
             <td><c:out value="${basicIngredients.dairy}" /></td>
-            <th> | </th>
-            <%--<td>--%>
-                <%--<c:if test="${basicIngredients.questionType == 'MULTIPLE_CHOICE'}">--%>
-                    <%--<c:out value="${basicIngredients.correctMultipleChoiceAnswer}" />--%>
-                <%--</c:if>--%>
-                <%--<c:if test="${basicIngredients.questionType == 'TRUE_FALSE'}">--%>
-                    <%--<c:out value="${basicIngredients.trueOrFalse}" />--%>
-                <%--</c:if>--%>
-                <%--<c:if test="${basicIngredients.questionType == 'CODE'}">--%>
-                    <%--<c:forEach var="codeLine" items="${basicIngredients.codeLines}">--%>
-                        <%--<c:if test="${not empty codeLine}">--%>
-                            <%--<c:out value="${codeLine}"/><br>--%>
-                        <%--</c:if>--%>
-                    <%--</c:forEach>--%>
-                <%--</c:if>--%>
+            <th>|</th>
+            <td><c:out value="${basicIngredients.toppings}" /></td>
+            <th>|</th>
+            <td><textarea rows="2" cols="15"></textarea> </td>
 
-            <%--</td>--%>
 
-            <td><a href="/admin/deleteRecipe?id=${basicIngredients.id}">DELETE<c:out value="${basicIngredients.id}" /></a></td>
+            <td><a href="/admin/deletebasicIngredient?id=${basicIngredients.id}">DELETE<c:out value="${basicIngredients.id}" /></a></td>
 
         </tr>
     </c:forEach>
 </table
 
-    <br>
-    <br>
-    <br>
-<table>
+ <%--<br>--%>
+<%--<table>--%>
+    <%--<tr>--%>
+        <%--<th>Cook Time/Ingredients/Directions </th>--%>
+    <%--</tr><br>--%>
 
-<tr>
-    <th> recipe Id</th>
-    <th> | </th>
-    <th> Cook time </th>
-    <th> | </th>
-    <th> Ingredients </th>
-    <th> | </th>
-    <th> difficulty </th>
-    <th> | </th>
-</tr>
-    <c:forEach var="stepByStep" items="${stepByStep}">
-
-    <tr>
-        <td><a href="/admin/viewRecipe?id=${stepByStep.id}"><c:out value="${stepByStep.id}" /></a></td>
-        <th> | </th>
-        <td><c:out value="${stepByStep.cooktime}" /></td>
-        <th> | </th>
-        <td><c:out value="${stepByStep.ingredients}" /></td>
-        <th> | </th>
-        <td><c:out value="${stepByStep.difficulty}" /></td>
-
-
-    </tr>
-    </c:forEach>
-
-
-</table>
+        <%--<tr>--%>
+       <%--<TextArea rows="10" cols="30"></TextArea>--%>
+        <%--</tr>--%>
+<%--</table>--%>
 <br><br>
 <a href="/">HOME</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -109,6 +83,5 @@
 ||
 <a href="/admin/uploadQuestions">Bulk Upload Recipes</a>
 
-</body>
 </body>
 </html>
