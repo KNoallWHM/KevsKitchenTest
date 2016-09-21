@@ -29,18 +29,19 @@
         <th> | </th>
         <th> Dairy </th>
         <th> | </th>
-        <th> Toppings </th>
-        <th> | </th>
         <th> Directions </th>
     </tr>
     <c:forEach var="basicIngredients" items="${basicIngredients}">
         <tr>
             <td><a href="/admin/viewBasicIngredient?id=${basicIngredients.id}"><c:out value="${basicIngredients.id}" /></a></td>
             <th>|</th>
-            <td><textarea rows="1" cols="15"></textarea></td>
+            <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
             <td><c:out value="${basicIngredients.meat}" /></td>
             <th>|</th>
+            <%--<td> <textarea name="directions" id="directions"></textarea></td>--%>
+            <%--<th>|</th>--%>
+
             <td><c:out value="${basicIngredients.veggies}" /></td>
             <th>|</th>
             <td><c:out value="${basicIngredients.fruits}" /></td>
@@ -53,12 +54,13 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.dairy}" /></td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.toppings}" /></td>
-            <th>|</th>
-            <td><textarea rows="2" cols="15"></textarea> </td>
+            <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
+            <%--<th>|</th>--%>
+            <td><c:out value="${basicIngredients.directions}" /></td>
+            <%--<td><textarea rows="2" cols="15"></textarea> </td>--%>
 
 
-            <td><a href="/admin/deletebasicIngredient?id=${basicIngredients.id}">DELETE<c:out value="${basicIngredients.id}" /></a></td>
+            <td><a href="/admin/deleteBasicIngredient?id=${basicIngredients.id}">DELETE<c:out value="${basicIngredients.id}" /></a></td>
 
         </tr>
     </c:forEach>

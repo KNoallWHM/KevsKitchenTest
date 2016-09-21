@@ -2,168 +2,134 @@
 <%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-<title> </title>
+    <link type="text/css" rel="stylesheet" href="/css/inputRecipe.css"/>
+
+    <title> </title>
 </head>
-<body>
+<body background="http://thumbs.dreamstime.com/z/sailor-stories-old-times-nostalgia-background-21918732.jpg" >
+
+<form id="newRecipeForm"  method="POST" action="/admin/saveRecipe3">
+    
+     <p>Please Input one of the fallowing in each category as an</p><br>
+     <p>ID/main Ingredients for your recipe, Please Use <b>CAPS</b></p><br>
+     <p>If you do not have any of these Just type <b>NONE</b></p>
+        <p>HAPPY COOKING :) </p>
+        <br>
+        Type of Meat:<br>
+    <input type="text" style="background-color: orange " name="meat" value="NONE">
+            <br>
+                <p> Turkey, Beef, Pork, Chicken, Sausage, Franks, Ham</p>
+            <br>
+        <input type="text" name="veggies" style="background-color: orange " value="NONE">
+            <br>
+                <p>ONIONS, TOMATOES, CHEERY_TOMATOES, POTATOES, GARLIC,</p>
+                <p>GREEN PEPPERS, BELL PEPPERS, BANANA PEPPERS, SUMMER SQUASH,</p>
+                <p>SPAGHETTI SQUASH, BUTTERNUT SQUASH, PUMPKIN, BROCCOLI, BEANS,</p>
+                <p>GREEN BEANS, CARROTS, CORN, ASPEARAGUS, BRUSSEL SPROUTS, ZUCCINI,</p>
+                <p>LETTUCE, BEETS, PEAS, MUSHROOMS, SWEET POTATOES</p>
+            <br><br>
+        <input type="text" name="fruits" style="background-color: orange " value="NONE">
+            <br>
+                <p>APPLES, ORANGES, STRAWBERRIES, RASPBERRIES, WATERMELON, AVACADOS,</p>
+                <p>BLUEBERRIES, BLACKBERRIES, GRAPES, CRANBERRIES, PINEAPPLE, KIWI</p>
+                <p>COCONUT, MANGO, PEARS, PEACHES, CANTELOUPE, GRAPEFRUIT, BANANA</p>
+            <br><br>
+
+        <input type="text" name="fish" style="background-color: orange " value="NONE">
+            <br>
+                <p>TUNA, SALMON, SQUID, OCTOPUS, CRAB, COD, TROUT </p>
+            <br><br>
+
+        <input type="text" name="seasonings" style="background-color: orange " value="NONE">
+            <br>
+                <p> CINNAMON, PAPRIKA, TURMERIC, GINGER, NUTMEG, TARMORIND,</p>
+                <p>OREGANO, CORDAMON, SALT, PEPPER, CLOVES, CHILI POWDER, CUMIN</p>
+            <br>
+        <input type="text" name="grains" style="background-color: orange " value="NONE">
+            <br>
+
+                <p>SPAGHETTI, TORTELLINI, SHELL, MACARONI, LASAGNA, PENNE, LINGUINI,</p>
+                <p>FORFALLI, ANGEL HAIR, WHITE BREAD, WHEAT BREAD, RYE, SOUR DOUGH, </p>
+                <p>CORN BREAD, WHITE RICE, BROWN RICE, JASMINE, WHITE FLOUR, WHEAT FLOUR,</p>
+                <p>COCONUT FLOUR, WHITE TORTILLA, WHEAT TORTILLA, CORN TORTILLA, OATS</p>
+            <br>
+        <input type="text" name="dairy" style="background-color: orange "value="NONE">
+            <br>
+                <p>CHOCOLATE_MILK, MILK, BLOCK_CHEESE, SHREDDED_CHEESE, YOGURT,</p>
+                <p>COTTAGE_CHEESE, CREAM_CHEESE, SOUR_CREAM, EGGS</p>
+            <br>
+
+       Name of Recipe: <input type="text" style="background-color: cornflowerblue " name="nameOfRecipe"value="NONE">
+        <br>
+        Directions for Recipe:<input type="text" style="background-color: cornflowerblue " name="directions"value="NONE"><br>
+
+    <%--<form:label path="directions">directions:</form:label>--%>
+    <%--<br>--%>
+    <%--Cook time: <form:input path="directions[0]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[1]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--Ingredients: <form:input path="directions[2]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[3]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[4]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[5]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[6]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[7]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[8]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[9]" maxlength="255" size="100" />--%>
+    <%--<br> <form:label path="directions">directions:</form:label>--%>
+    <%--<br>--%>
+    <%--Cook time: <form:input path="directions[0]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[1]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--Ingredients: <form:input path="directions[2]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[3]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[4]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[10]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--Directions: <form:input path="directions[11]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[12]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[13]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[14]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[15]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[16]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[17]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[18]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[19]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[20]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[21]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[22]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+     <%--<form:input path="directions[23]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
 
 
-<%--<form action="/admin/saveNewRecipe.jsp">--%>
-
-
-
-
-
-<form id="newRecipeForm"  method="POST" action="/admin/saveNewRecipe2">
-    <h2>name of recipe here</h2>
-    <textarea rows="1" cols="20"> </textarea>
-    <p>Meats you would like to add to your recipe:</p>
-        <input type="checkbox" name="TURKEY" value="TURKEY"> Turkey
-        <input type="checkbox" name="BEEF" value="BEEF"> Beef
-        <input type="checkbox" name="PORK" value="PORK"> Pork <br>
-        <input type="checkbox" name="CHICKEN" value="CHICKEN"> Chicken
-        <input type="checkbox" name="SAUSAGE" value="SAUSAGE"> Sausage
-        <input type="checkbox" name="FRANKS" value="FRANKS"> Franks<br>
-        <input type="checkbox" name="HAM" value="HAM"> Ham
-    <br><br>
-    <p>Vegatables that you would like to add to your recipe:</p>
-    <input type="checkbox" name="ONIONS" value="ONIONS"> Onions
-    <input type="checkbox" name="TOMATOES" value="TOMATOES"> Tomatoes
-    <input type="checkbox" name="CHEERY_TOMATOES" value="CHERRY_TOMATOES"> Cherry Tomatoes<br>
-    <input type="checkbox" name="POTATOES" value="POTATOES"> Potatoes
-    <input type="checkbox" name="GARLIC" value="GARLIC"> Garlic
-    <input type="checkbox" name="GREEN_PEPPERS" value="GREEN_PEPPERS"> Green Peppers<br>
-    <input type="checkbox" name="BELL_PEPPERS" value="BELL_PEPPERS"> Bell Peppers
-    <input type="checkbox" name="BANANA_PEPPERS" value="BANANA_PEPPERS"> Banana Peppers
-    <input type="checkbox" name="SUMMER_SQUASH" value="SUMMER_SQUASH"> Spaghetti Squash<br>
-    <input type="checkbox" name="BUTTERNUT_SQUASH" value="BUTTERNUT_SQUASH"> Butternut Squash
-    <input type="checkbox" name="PUMPKIN" value="PUMPKIN"> Pumpkin
-    <input type="checkbox" name="BROCCOLI" value="BROCCOLI"> Broccoli <br>
-    <input type="checkbox" name="BEANS" value="BEANS"> Beans
-    <input type="checkbox" name="GREEN_BEANS" value="GREEN_BEANS"> Green Beans
-    <input type="checkbox" name="CARROTS" value="CARROTS"> Carrots <br>
-    <input type="checkbox" name="ASPEARAGUS" value="ASPEARAGUS"> Aspearagus
-    <input type="checkbox" name="BRUSSELL_SPROUTS" value="BRUSSELL_SPROUTS"> Brussel Sprouts
-    <input type="checkbox" name="ZUCCINI" value="ZUCINNI"> Zucinni<br>
-    <input type="checkbox" name="LETTUCE" value="LETTUCE"> Lettuce
-    <input type="checkbox" name="BEETS" value="BEETS"> Beets
-    <input type="checkbox" name="PEAS" value="PEAS"> Peas<br>
-    <input type="checkbox" name="MUSHROOMS" value="MUSHROOMS"> Mushrooms
-    <input type="checkbox" name="SPAGHETTI_SQUASH" value="SPAGHETTI_SQUASH"> Spaghetti Squash
-    <input type="checkbox" name="CORN" value="CORN"> Corn<br>
-    <input type="checkbox" name="SWEET_POTATOES" value="SWEET_POTATOES"> Sweet Potatoes
-    <br><br>
-    <p> Fruit that you would like to add to your Recipe:</p>
-    <input type="checkbox" name="APPLES" value="APPLES"> Apples
-    <input type="checkbox" name="ORANGES" value="ORANGES"> Oranges
-    <input type="checkbox" name="STRAWBERRIES" value="STRAWBERRIES"> Strawberries<br>
-    <input type="checkbox" name="RASPBERRIES" value="RASPBERRIES"> Raspberries
-    <input type="checkbox" name="WATERMELON" value="WATERMELON"> Watermelon
-    <input type="checkbox" name="BLUEBERRIES" value="BLACKBERRIES"> Blackberries<br>
-    <input type="checkbox" name="GRAPES" value="GRAPES"> Grapes
-    <input type="checkbox" name="CRANBERRIES" value="CRANBERRIES"> Cranberries
-    <input type="checkbox" name="PINEAPPLE" value="PINEAPPLE"> Pineapple<br>
-    <input type="checkbox" name="COCONUT" value="COCONUT"> Coconut
-    <input type="checkbox" name="MANGO" value="MANGO"> Mango
-    <input type="checkbox" name="PEARS" value="PEARS"> Pears<br>
-    <input type="checkbox" name="PEACHES" value="PEACHES"> Peaches
-    <input type="checkbox" name="CANTELOUPE" value="CANTELOUPE"> Canteloupe
-    <input type="checkbox" name="GRAPEFRUIT" value="GRAPEFRUIT"> Grapefruit<br>
-    <input type="checkbox" name="BANANA" value="BANANA"> Banana
-    <input type="checkbox" name="AVACADOS" value="AVACADOS"> Avacados
-    <input type="checkbox" name="KIWI" value="KIWI"> Kiwi<br>
-    <br><br>
-    <p>Fish that you would like to add to your recipe</p>
-    <input type="checkbox" name="TUNA" value="TUNA"> Tuna
-    <input type="checkbox" name="SALMON" value="SALMON"> Salmon
-    <input type="checkbox" name="SQUID" value="SQUID"> Squid<br>
-    <input type="checkbox" name="OCTOPUS" value="OCTOPUS"> Octopus
-    <input type="checkbox" name="CRAB" value="CRAB"> Crab
-    <input type="checkbox" name="COD" value="COD"> Cod<br>
-    <input type="checkbox" name="TROUT" value="TROUT"> Trout
-
-    <br><br>
-    <p>Seasonings that you would like to add to your Recipe</p>
-    <input type="checkbox" name="CINNAMON" value="CINNAMON"> Cinnamon
-    <input type="checkbox" name="PAPRIKA" value="PAPRIKA"> Paprika
-    <input type="checkbox" name="TURMERIC" value="TUMERIC"> Tumeric<br>
-    <input type="checkbox" name="GINGER" value="GINGER"> Ginger
-    <input type="checkbox" name="NUTMEG" value="NUTMEG"> Nutmeg
-    <input type="checkbox" name="TARMORIND" value="TARMORIND"> Tarmorind<br>
-    <input type="checkbox" name="CUMIN" value="CUMIN"> Cumin
-    <input type="checkbox" name="OREGANO" value="OREGANO"> Oregano
-    <input type="checkbox" name="CORDAMON" value="CORDAMON"> Cordamon<br>
-    <input type="checkbox" name="SALT" value="SALT"> Salt
-    <input type="checkbox" name="PEPPER" value="PEPPER"> Pepper
-    <input type="checkbox" name="CLOVES" value="CLOVES"> Cloves<br>
-    <input type="checkbox" name="CHILI_POWDER" value="CHILI_POWDER"> Chili Powder
-    <br><br>
-    <p>Grains that you would like to add to your recipe</p>
-    <input type="checkbox" name="SPAGHETTI" value="SPAGHETTI"> Spaghetti
-    <input type="checkbox" name="TORTELLINI" value="TORTELLINI"> Tortellini
-    <input type="checkbox" name="SHELL" value="SHELL"> Shell<br>
-    <input type="checkbox" name="MACARONI" value="MACARONI"> Macaroni
-    <input type="checkbox" name="LASAGNA" value="LASAGNA"> Lasagna
-    <input type="checkbox" name="PENNE" value="PENNE"> Penne<br>
-    <input type="checkbox" name="LINGUINI" value="LINGUINI"> Linguini
-    <input type="checkbox" name="FORFALLI" value="FORFALLI"> Forfalli
-    <input type="checkbox" name="ANGEL_HAIR" value="ANGEL_HAIR"> Angel Hair<br>
-    <input type="checkbox" name="WHITE_BREAD" value="WHITE_BREAD"> White Bread
-    <input type="checkbox" name="RYE" value="RYE"> Rye
-    <input type="checkbox" name="SOUR_DOUGH" value="SOUR_DOUGH"> Sour Dough<br>
-    <input type="checkbox" name="CORN_BREAD" value="CORN_BREAD"> Corn Bread
-    <input type="checkbox" name="WHITE_RICE" value="WHITE_RICE"> White Rice
-    <input type="checkbox" name="BROWN_RICE" value="BROWN_RICE"> Brown Rice<br>
-    <input type="checkbox" name="JASMINE" value="JASMINE"> Jasmine
-    <input type="checkbox" name="WHITE_FLOUR" value="WHITE_FLOUR"> White Flour
-    <input type="checkbox" name="COCONUT_FLOUR" value="COCONUT_FLOUR"> Coconut Flour<br>
-    <input type="checkbox" name="WHITE_TORTILLA" value="WHITE_TORTILLA"> White Tortilla
-    <input type="checkbox" name="WHEAT_TORTILLA" value="WHEAT_TORTILLA"> Wheat Tortilla
-    <input type="checkbox" name="CORN_TORTILLA" value="CORN_TORTILLA"> Corn Tortilla<br>
-    <input type="checkbox" name="OATS" value="OATS"> Oats
-    <input type="checkbox" name="WHEAT_BREAD" value="WHEAT_BREAD"> Wheat Bread
-    <input type="checkbox" name="WHEAT_FLOUR" value="WHEAT_FLOUR"> Wheat Flour
-    <br><br>
-    <p>Dairy products that you would like to add to your Recipe</p>
-    <input type="checkbox" name="CHOCOLATE_MILK" value="CHOCOLATE_MILK"> Chocolate Milk
-    <input type="checkbox" name="MILK" value="MILK"> Milk
-    <input type="checkbox" name="BLOCK_CHEESE" value="BLOCK_CHEESE"> Block of Cheese<br>
-    <input type="checkbox" name="SHREDDED_CHEESE" value="SHREDDED_CHEESE"> Shredded Cheese
-    <input type="checkbox" name="YOGURT" value="YOGURT"> Yogurt
-    <input type="checkbox" name="COTTAGE_CHEESE" value="COTTAGE_CHEESE"> Cottage Cheese<br>
-    <input type="checkbox" name="CREAM_CHEESE" value="CREAM_CHEESE"> Cream Cheese
-    <input type="checkbox" name="SOUR_CREAM" value="SOUR_CREAM"> Sour Cream
-    <input type="checkbox" name="EGGS" value="EGGS"> Eggs
-    <br>
-    <br>
-
-
-
-
-
-
-
-    <br>
-<p>Directions for Recipe</p><br>
-    <textarea rows="14" cols="40">
-    Cooktime:
-    Ingredients:
-
-    Directions:
-
-
-    </textarea>
-
-
-    <br>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <input type="submit">
-    </form>
 
-
-
-
-
-<%--</form>--%>
-
+</form>
 </body>
 </html>
+
