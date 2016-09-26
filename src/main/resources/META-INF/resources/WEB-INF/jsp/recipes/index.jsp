@@ -8,12 +8,12 @@
 </head>
 <body>
 
-   <span style="color:deepskyblue;"> <h1 style="font-size:18px">WELCOME TO Kevs Kitchen</h1></span><br>
+   <span style="color:deepskyblue;"> <p style="font-size:18px">WELCOME TO Kevs Kitchen</p></span><br>
    <p><span style="color:orange;">INSTRUCTIONS...input what you have</span> </p>
    <p><span style="color:deepskyblue;"> Please select the main Ingredients from each category to find Recipe.</span></p>
 
 
-    <form name="Recipe finder" method="POST" action="/recipes/searchRecipes">
+    <form name="Recipe finder" method="POST" action="/recipes/findByMeat">
 
 
         <span style="color: red;"> Type of Meat:
@@ -24,16 +24,26 @@
             </c:forEach>
             </select>
             </span>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <input type="submit" value="Find by..." onclick="location.href='/recipes/findByMeat';">
+    </form>
+
+   <form name="Recipe finder" method="POST" action="/recipes/findByVeg">
 
 
         <span style="color: forestgreen;"> Type of Veggies:
-            <select name="veggies" onchange="location.href = this">
+            <select name="veggies">
             <c:forEach var="veggies" items="${vegetables}">
                 <option value="<c:out value="${veggies}"/>"><c:out value="${veggies}"/></option>
             </c:forEach>
             </select>
 
             </span><br>
+       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+       <input type="submit" value="Find by..." onclick="location.href='/recipes/findByVeg';">
+   </form>
+
+   <form name="Recipe finder" method="POST" action="/recipes/findByFruit">
 
         <span style="color:purple"> Types of Fruits:
         <select name="fruit" >
@@ -42,6 +52,11 @@
             </c:forEach>
             </select>
         </span>
+       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+       <input type="submit" value="Find by..." onclick="location.href='/recipes/findByFruits';">
+   </form>
+
+   <form name="Recipe finder" method="POST" action="/recipes/findByFish">
 
         <span style="color:deepskyblue"> Type of Fish:
         <select name="fish">
@@ -50,6 +65,11 @@
             </c:forEach>
         </select>
             </span><br>
+       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+       <input type="submit" value="Find by..." onclick="location.href='/recipes/findByFish';">
+   </form>
+
+   <form name="Recipe finder" method="POST" action="/recipes/findBySeasoning">
 
 
         <span style="color:lightseagreen"> Type of Seasonings:
@@ -59,6 +79,11 @@
             </c:forEach>
         </select>
         </span>
+       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+       <input type="submit" value="Find by..." onclick="location.href='/recipes/findBySeasoning';">
+   </form>
+
+   <form name="Recipe finder" method="POST" action="/recipes/findByGrain">
 
         <span style="color:sandybrown"> Type of Grain:
         <select name="grains">
@@ -67,6 +92,11 @@
             </c:forEach>
         </select>
             </span><br>
+       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+       <input type="submit" value="Find by..." onclick="location.href='/recipes/findByGrain';">
+   </form>
+
+   <form name="Recipe finder" method="POST" action="/recipes/findByDairy">
 
         <span style="color:cornflowerblue"> Dairy Products:
         <select name="dairy">
@@ -79,7 +109,7 @@
 
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        <input type="submit" value="View Recipes related to the food you have">
+        <input type="submit" value="Find by..." onclick="location.href='/recipes/findByDairy';">
 
 
     </form>
