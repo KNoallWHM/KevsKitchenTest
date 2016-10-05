@@ -23,29 +23,23 @@ import java.util.List;
 public class AdminController {
 
     private final BasicIngredientsDAO basicIngredientsDAO;
-//    private final StepByStepDAO stepByStepDAO;
 
     @Autowired
-    public AdminController(BasicIngredientsDAO basicIngredientsDAO, StepByStepDAO stepByStepDAO) {
+    public AdminController(BasicIngredientsDAO basicIngredientsDAO) {
         Assert.notNull(basicIngredientsDAO, "BasicIngredientsDAO must not be null!");
-//        Assert.notNull(stepByStepDAO, "StepByStepDAO must not be null!");
         this.basicIngredientsDAO = basicIngredientsDAO;
-//        this.stepByStepDAO = stepByStepDAO;
     }
 
     @RequestMapping(value = "/")
     public String allRecipes(ModelMap model) {
         Iterable<BasicIngredients> basicIngredientses = basicIngredientsDAO.findAll();
-//        Iterable<StepByStep> stepByStep = stepByStepDAO.findAll();
         model.addAttribute("basicIngredients", basicIngredientses);
-//        model.addAttribute("stepBystep", stepByStep);
         return "admin/viewAllRecipes";
     }
 
     @RequestMapping(value = "inputRecipe")
     public String addRecipe(ModelMap model) {
         model.addAttribute("basicIngredient", new BasicIngredients());
-//        model.addAttribute("stepByStep", new StepByStep());
         return "admin/inputRecipe";
     }
 
@@ -59,25 +53,20 @@ public class AdminController {
     @RequestMapping(value = "viewRecipe")
     public String viewRecipe(long id, ModelMap model) {
         BasicIngredients basicIngredients = basicIngredientsDAO.findOne(id);
-//        StepByStep stepByStep = stepByStepDAO.findOne(id);
         model.addAttribute("basicIngredients", basicIngredients);
-//        model.addAttribute("stepByStep", stepByStep);
-        return "admin/editQuestion";
+        return "admin/viewRecipe";
     }
 
     @RequestMapping(value = "deleteBasicIngredient")
-    public View deleteRecipe(long id) {
+    public View deleteBasicIngredient(long id) {
         BasicIngredients basicIngredients = basicIngredientsDAO.findOne(id);
-//        StepByStep stepByStep = stepByStepDAO.findOne(id);
         basicIngredientsDAO.delete(basicIngredients);
-//        stepByStepDAO.delete(stepByStep);
         return new RedirectView("/admin/");
     }
 
     @RequestMapping(value = "saveEditedRecipe")
-    public View saveEditedRecipe(BasicIngredients basicIngredients, StepByStep stepByStep) {
+    public View saveEditedRecipe(BasicIngredients basicIngredients) {
         basicIngredientsDAO.save(basicIngredients);
-//        stepByStepDAO.save(stepByStep);
         return new RedirectView("/admin/");
     }
 

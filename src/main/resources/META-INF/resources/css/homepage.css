@@ -1,3 +1,5 @@
+
+
 section {
     
 }
@@ -5,6 +7,33 @@ h1{
     
 }
 body {
-    /*background-image: url("http://previewcf.turbosquid.com/Preview/2014/08/01__16_44_19/parch_01.jpgef5d9ae1-b88e-4987-a95f-f4c838ee2d49Larger.jpg");*/
-    text-align-all: center;
+    /*background-image: url("https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-9/11873784_10207525668284818_7021402480600418594_n.jpg?oh=d05ff3bcb50e7c70bd88f33fd12efe06&oe=5875EC2E");*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: scroll;*/
+    /*background-height:auto;*/
+    /*background-width: auto;*/
+    margin: 0;
+    padding: 0;
+    background-image: url("http://c8.alamy.com/comp/F05E87/pasta-cooking-ingredients-and-utensils-on-wooden-table-top-view-with-F05E87.jpg");
+    background-repeat: no-repeat;
+    background-size:100%;
+margin-left: 37%;
+}
+text{
+}
+.white-out {
+    width: 100vw;
+    height:100% ;
+    background-color: white;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+}
+.form-div {
+    width: 100%;
+}
+.form-span{
+    margin: auto auto;
 }

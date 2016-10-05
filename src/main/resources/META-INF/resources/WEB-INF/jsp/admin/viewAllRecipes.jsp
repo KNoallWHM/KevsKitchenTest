@@ -33,7 +33,7 @@
     </tr>
     <c:forEach var="basicIngredients" items="${basicIngredients}">
         <tr>
-            <td><a href="/admin/viewBasicIngredient?id=${basicIngredients.id}"><c:out value="${basicIngredients.id}" /></a></td>
+            <td><a href="/admin/viewRecipe?id=${basicIngredients.id}"><c:out value="${basicIngredients.id}" /></a></td>
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
@@ -56,6 +56,11 @@
             <th>|</th>
             <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
             <%--<th>|</th>--%>
+            <%--<c:forEach var="direction" items="${basicIngredients.directions}">--%>
+                <%--<c:if test="${not empty direction}">--%>
+                    <%--<c:out value="${direction}"/><br>--%>
+                <%--</c:if>--%>
+            <%--</c:forEach>--%>
             <td><c:out value="${basicIngredients.directions}" /></td>
             <%--<td><textarea rows="2" cols="15"></textarea> </td>--%>
 

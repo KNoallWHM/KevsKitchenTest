@@ -18,7 +18,7 @@
         Type of Meat:<br>
     <input type="text" style="background-color: orange " name="meat" value="NONE">
             <br>
-                <p> Turkey, Beef, Pork, Chicken, Sausage, Franks, Ham</p>
+                <p> TURKEY, BEEF, PORK, CHICKEN, SAUSAGE, FRANKS, HAM</p>
             <br>
         <input type="text" name="veggies" style="background-color: orange " value="NONE">
             <br>
@@ -37,7 +37,7 @@
 
         <input type="text" name="fish" style="background-color: orange " value="NONE">
             <br>
-                <p>TUNA, SALMON, SQUID, OCTOPUS, CRAB, COD, TROUT </p>
+                <p>TUNA, SALMON, SQUID, OCTOPUS, CRAB, COD, TROUT, HALIBUT </p>
             <br><br>
 
         <input type="text" name="seasonings" style="background-color: orange " value="NONE">
@@ -61,71 +61,63 @@
 
        Name of Recipe: <input type="text" style="background-color: cornflowerblue " name="nameOfRecipe"value="NONE">
         <br>
-        Directions for Recipe:<input type="text" style="background-color: cornflowerblue " name="directions"value="NONE"><br>
-
+        <%--Directions for Recipe:<input type="text" style="background-color: cornflowerblue " name="directions"value="NONE"><br>--%>
+<%--<div>--%>
     <%--<form:label path="directions">directions:</form:label>--%>
     <%--<br>--%>
-    <%--Cook time: <form:input path="directions[0]" maxlength="255" size="100" />--%>
+    <%--Cook time: <form:input path="direction[0]" maxlength="255" size="100" />--%>
     <%--<br>--%>
-    <%--<form:input path="directions[1]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-    <%--Ingredients: <form:input path="directions[2]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[3]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[4]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[5]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[6]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[7]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[8]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[9]" maxlength="255" size="100" />--%>
-    <%--<br> <form:label path="directions">directions:</form:label>--%>
-    <%--<br>--%>
-    <%--Cook time: <form:input path="directions[0]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-    <%--<form:input path="directions[1]" maxlength="255" size="100" />--%>
+    <%--<form:input path="direction[1]" maxlength="255" size="100" />--%>
     <%--<br>--%>
     <%--Ingredients: <form:input path="directions[2]" maxlength="255" size="100" />--%>
     <%--<br>--%>
-    <%--<form:input path="directions[3]" maxlength="255" size="100" />--%>
+    <%--<form:input path="direction[3]" maxlength="255" size="100" />--%>
     <%--<br>--%>
-    <%--<form:input path="directions[4]" maxlength="255" size="100" />--%>
+    <%--<form:input path="direction[4]" maxlength="255" size="100" />--%>
     <%--<br>--%>
-     <%--<form:input path="directions[10]" maxlength="255" size="100" />--%>
+    <%--<form:input path="direction[5]" maxlength="255" size="100" />--%>
     <%--<br>--%>
-     <%--Directions: <form:input path="directions[11]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[12]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[13]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[14]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-    <%--<form:input path="directions[15]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[16]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[17]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[18]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-    <%--<form:input path="directions[19]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-    <%--<form:input path="directions[20]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[21]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[22]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-     <%--<form:input path="directions[23]" maxlength="255" size="100" />--%>
-    <%--<br>--%>
-
-
+    <%--&lt;%&ndash;<form:input path="directions[6]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<form:input path="directions[7]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<form:input path="directions[8]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<form:input path="directions[9]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br> <form:label path="directions">directions:</form:label>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;Cook time: <form:input path="directions[10]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<form:input path="directions[11]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;Ingredients: <form:input path="directions[12]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<form:input path="directions[13]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<form:input path="directions[14]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<form:input path="directions[15]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;Directions: <form:input path="directions[16]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<form:input path="directions[17]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<form:input path="directions[18]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<form:input path="directions[19]" maxlength="255" size="100" />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+    <div class="form-group">
+        <label for="comment">Comment:</label>
+        <textarea class="form-control" rows="5" id="comment"></textarea>
+    </div>
+    <%--<div class="form-group">--%>
+        <%--Directions <label for="newrecipeform">  </label>--%>
+        <%--<textarea name="directions" class="from-control"  rows="5" cols="15"></textarea>--%>
+    <%--</div>--%>
+<%--<div>--%>
+   <%--link to recipe page: <input type="url" ><a href="";></a>--%>
+<%--</div>--%>
+<%--</div>--%>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <input type="submit">
 

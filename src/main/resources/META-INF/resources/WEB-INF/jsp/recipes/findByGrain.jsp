@@ -21,7 +21,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -47,7 +47,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -73,7 +73,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -99,7 +99,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -151,7 +151,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -177,7 +177,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -203,7 +203,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -229,7 +229,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -255,7 +255,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -281,7 +281,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -307,7 +307,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -333,7 +333,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -359,7 +359,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -385,7 +385,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -411,7 +411,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -437,7 +437,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -463,7 +463,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -489,7 +489,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -515,7 +515,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -541,7 +541,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -567,7 +567,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -593,7 +593,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -619,7 +619,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>
@@ -645,7 +645,7 @@
             <th>|</th>
             <td><c:out value="${basicIngredients.nameOfRecipe}"/> </td>
             <th>|</th>
-            <td><c:out value="${basicIngredients.grain}" /></td>
+            <td><c:out value="${basicIngredients.grains}" /></td>
             <th>|</th>
                 <%--<td><c:out value="${basicIngredients.toppings}" /></td>--%>
                 <%--<th>|</th>--%>

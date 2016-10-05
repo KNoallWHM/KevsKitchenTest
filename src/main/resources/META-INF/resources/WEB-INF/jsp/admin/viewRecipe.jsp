@@ -3,120 +3,134 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Edit Question</title>
-    <script type="text/javascript">
-        function changeTypeDisplay () {
-            var e = document.getElementById("questionType");
-            var optionValue = e.options[e.selectedIndex].value;
-            if(optionValue == 'MULTIPLE_CHOICE') {
-                document.getElementById("type1").style.display = 'block';
-                document.getElementById("type2").style.display = 'none';
-                document.getElementById("type3").style.display = 'none';
-                document.getElementById("type4").style.display = 'none';
-            } else if(optionValue == 'TRUE_FALSE') {
-                document.getElementById("type1").style.display = 'none';
-                document.getElementById("type2").style.display = 'block';
-                document.getElementById("type3").style.display = 'none';
-                document.getElementById("type4").style.display = 'none';
 
-            } else if(optionValue == 'CODE') {
-                document.getElementById("type1").style.display = 'none';
-                document.getElementById("type2").style.display = 'none';
-                document.getElementById("type3").style.display = 'block';
-                document.getElementById("type4").style.display = 'none';
-
-            }
-        }
-    </script>
 </head>
 <body>
-<h1>Edit Question</h1>
-<form:form id="editRecipeForm" commandName="basicIngredients" method="POST" action="/admin/saveEditedRecipe">
-    <form:hidden path="id" id="id" />
-    <form:label path="category">Question Category:</form:label>
-    <form:select path="category" id="category">
-        <form:options items="${Category}" />
-    </form:select>
-    <br>
-    <form:label path="questionType">Question Type:</form:label>
-    <form:select path="questionType" id="questionType" onchange="changeTypeDisplay();">
-        <form:options items="${QuestionType}" />
-    </form:select>
-    <br>
-    <form:label path="difficulty">Question Difficulty:</form:label>
-    <form:select path="difficulty" id="difficulty">
-        <form:options items="${Difficulty}" />
-    </form:select>
-    <br>
-    <form:label path="question">Question:</form:label>
-    <form:input path="question" id="question" maxlength="255" size="100" />
-    <br>
-    <div id="type1">
-        <form:label path="correctMultipleChoiceAnswer">Correct Multiple Choice Answer:</form:label>
-        <form:input path="correctMultipleChoiceAnswer" id="correctMultipleChoiceAnswer" maxlength="255" size="100" />
-        <br>
-        <form:label path="wrongMultipleChoiceAnswer1">First Wrong Multiple Choice Answer:</form:label>
-        <form:input path="wrongMultipleChoiceAnswer1" id="wrongMultipleChoiceAnswer1" maxlength="255" size="100" />
-        <br>
-        <form:label path="wrongMultipleChoiceAnswer2">Second Wrong Multiple Choice Answer:</form:label>
-        <form:input path="wrongMultipleChoiceAnswer2" id="wrongMultipleChoiceAnswer2" maxlength="255" size="100" />
-        <br>
-        <form:label path="wrongMultipleChoiceAnswer3">Third Wrong Multiple Choice Answer:</form:label>
-        <form:input path="wrongMultipleChoiceAnswer3" id="wrongMultipleChoiceAnswer3" maxlength="255" size="100" />
-    </div>
-    <div id="type2" style="display:none">
-        <form:label path="trueOrFalse">True or False:</form:label>
-        <form:radiobutton path="trueOrFalse" value="true"/>True
-        <form:radiobutton path="trueOrFalse" value="false"/>False
-    </div>
-    <div id="type3" style="display:none">
-        <form:label path="codeLines">codeLines:</form:label>
-        <br>
-        Line 01: <form:input path="codeLines[0]" maxlength="255" size="100" />
-        <br>
-        Line 02: <form:input path="codeLines[1]" maxlength="255" size="100" />
-        <br>
-        Line 03: <form:input path="codeLines[2]" maxlength="255" size="100" />
-        <br>
-        Line 04: <form:input path="codeLines[3]" maxlength="255" size="100" />
-        <br>
-        Line 05: <form:input path="codeLines[4]" maxlength="255" size="100" />
-        <br>
-        Line 06: <form:input path="codeLines[5]" maxlength="255" size="100" />
-        <br>
-        Line 07: <form:input path="codeLines[6]" maxlength="255" size="100" />
-        <br>
-        Line 08: <form:input path="codeLines[7]" maxlength="255" size="100" />
-        <br>
-        Line 09: <form:input path="codeLines[8]" maxlength="255" size="100" />
-        <br>
-        Line 10: <form:input path="codeLines[9]" maxlength="255" size="100" />
-        <br>
-        Line 11: <form:input path="codeLines[10]" maxlength="255" size="100" />
-        <br>
-        Line 12: <form:input path="codeLines[11]" maxlength="255" size="100" />
-        <br>
-        Line 13: <form:input path="codeLines[12]" maxlength="255" size="100" />
-        <br>
-        Line 14: <form:input path="codeLines[13]" maxlength="255" size="100" />
-        <br>
-        Line 15: <form:input path="codeLines[14]" maxlength="255" size="100" />
-        <br>
-        Line 16: <form:input path="codeLines[15]" maxlength="255" size="100" />
-        <br>
-        Line 17: <form:input path="codeLines[16]" maxlength="255" size="100" />
-        <br>
-        Line 18: <form:input path="codeLines[17]" maxlength="255" size="100" />
-        <br>
-        Line 19: <form:input path="codeLines[18]" maxlength="255" size="100" />
-        <br>
-        Line 20: <form:input path="codeLines[19]" maxlength="255" size="100" />
-    </div>
+<form name="viewRecipe"  method="POST" action="/admin/saveEditedRecipe">
 
+    <p>Please Input one of the fallowing in each category as an</p><br>
+    <p>ID/main Ingredients for your recipe, Please Use <b>CAPS</b></p><br>
+    <p>If you do not have any of these Just type <b>NONE</b></p>
+    <p>HAPPY COOKING :) </p>
     <br>
+    Type of Meat:<br>
+    <input type="text" style="background-color: orange " name="meat" value="NONE">
+    <br>
+    <p> TURKEY, BEEF, PORK, CHICKEN, SAUSAGE, FRANKS, HAM</p>
+    <br>
+    <input type="text" name="veggies" style="background-color: orange " value="NONE">
+    <br>
+    <p>ONIONS, TOMATOES, CHEERY_TOMATOES, POTATOES, GARLIC,</p>
+    <p>GREEN PEPPERS, BELL PEPPERS, BANANA PEPPERS, SUMMER SQUASH,</p>
+    <p>SPAGHETTI SQUASH, BUTTERNUT SQUASH, PUMPKIN, BROCCOLI, BEANS,</p>
+    <p>GREEN BEANS, CARROTS, CORN, ASPEARAGUS, BRUSSEL SPROUTS, ZUCCINI,</p>
+    <p>LETTUCE, BEETS, PEAS, MUSHROOMS, SWEET POTATOES</p>
+    <br><br>
+    <input type="text" name="fruits" style="background-color: orange " value="NONE">
+    <br>
+    <p>APPLES, ORANGES, STRAWBERRIES, RASPBERRIES, WATERMELON, AVACADOS,</p>
+    <p>BLUEBERRIES, BLACKBERRIES, GRAPES, CRANBERRIES, PINEAPPLE, KIWI</p>
+    <p>COCONUT, MANGO, PEARS, PEACHES, CANTELOUPE, GRAPEFRUIT, BANANA</p>
+    <br><br>
+
+    <input type="text" name="fish" style="background-color: orange " value="NONE">
+    <br>
+    <p>TUNA, SALMON, SQUID, OCTOPUS, CRAB, COD, TROUT, HALIBUT </p>
+    <br><br>
+
+    <input type="text" name="seasonings" style="background-color: orange " value="NONE">
+    <br>
+    <p> CINNAMON, PAPRIKA, TURMERIC, GINGER, NUTMEG, TARMORIND,</p>
+    <p>OREGANO, CORDAMON, SALT, PEPPER, CLOVES, CHILI POWDER, CUMIN</p>
+    <br>
+    <input type="text" name="grains" style="background-color: orange " value="NONE">
+    <br>
+
+    <p>SPAGHETTI, TORTELLINI, SHELL, MACARONI, LASAGNA, PENNE, LINGUINI,</p>
+    <p>FORFALLI, ANGEL HAIR, WHITE BREAD, WHEAT BREAD, RYE, SOUR DOUGH, </p>
+    <p>CORN BREAD, WHITE RICE, BROWN RICE, JASMINE, WHITE FLOUR, WHEAT FLOUR,</p>
+    <p>COCONUT FLOUR, WHITE TORTILLA, WHEAT TORTILLA, CORN TORTILLA, OATS</p>
+    <br>
+    <input type="text" name="dairy" style="background-color: orange "value="NONE">
+    <br>
+    <p>CHOCOLATE_MILK, MILK, BLOCK_CHEESE, SHREDDED_CHEESE, YOGURT,</p>
+    <p>COTTAGE_CHEESE, CREAM_CHEESE, SOUR_CREAM, EGGS</p>
+    <br>
+
+    Name of Recipe: <input type="text" style="background-color: cornflowerblue " name="nameOfRecipe"value="NONE">
+    <br>
+    <%--Directions for Recipe:<input type="text" style="background-color: cornflowerblue " name="directions"value="NONE"><br>--%>
+<%--<div>--%>
+    <%--<form:label path="directions">directions:</form:label>--%>
+    <%--<br>--%>
+    <%--Cook time: <form:input path="directions[0]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[1]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--Ingredients: <form:input path="directions[2]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[3]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[4]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[5]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[6]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[7]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[8]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[9]" maxlength="255" size="100" />--%>
+    <%--<br> <form:label path="directions">directions:</form:label>--%>
+    <%--<br>--%>
+    <%--Cook time: <form:input path="directions[10]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[11]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--Ingredients: <form:input path="directions[12]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[13]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[14]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[15]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--Directions: <form:input path="directions[16]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[17]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[18]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[19]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[15]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[16]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[17]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[18]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[19]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[20]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[21]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[22]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+    <%--<form:input path="directions[23]" maxlength="255" size="100" />--%>
+    <%--<br>--%>
+<%--</div>--%>
+    <div class="form-group">
+        <label for="comment">Comment:</label>
+        <textarea class="form-control" rows="5" id="comment"></textarea>
+    </div>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-    <input type="submit" value="Save Changes"><input type="button" value="Cancel" onclick="location.href='/admin/';">
-</form:form>
+    <input type="submit">
+
+</form>
 </body>
 <script type="text/javascript">
     changeTypeDisplay();

@@ -22,7 +22,7 @@ public class DataRestController {
         this.basicIngredientsDAO = basicIngredientsDAO;
     }
 
-    @RequestMapping("getAllQuestions")
+    @RequestMapping("getAllRecipes")
     public Iterable<BasicIngredients> getAllRecipes() {
         return basicIngredientsDAO.findAll();
     }

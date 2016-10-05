@@ -8,6 +8,8 @@ import java.util.List;
 @Transactional
 public  interface BasicIngredientsDAO extends CrudRepository<BasicIngredients, Long> {
 
+      Iterable<BasicIngredients> findAll();
+
       List<BasicIngredients> findByVeggies(BasicIngredients.Veggies veggies);
 
 

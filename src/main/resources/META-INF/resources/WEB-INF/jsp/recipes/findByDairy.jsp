@@ -4,6 +4,7 @@
     <title>View All Dairy Recipes</title>
 </head>
 <body>
+<table>
 <br><br>
 <c:if test="${!empty param.NONE} ">
     <table>
@@ -265,6 +266,7 @@
         </table>
 </c:if>
 <br><br>
+    </table>
 <a href="/">HOME</a>
 </body>
 

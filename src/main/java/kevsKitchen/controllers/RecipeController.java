@@ -19,6 +19,10 @@ import javax.persistence.TableGenerator;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
+import static kevsKitchen.entities.BasicIngredients.Meat.BEEF;
+import static kevsKitchen.entities.BasicIngredients.Meat.TURKEY;
+import static kevsKitchen.entities.BasicIngredients.Veggies.*;
+
 @Controller
 @RequestMapping(value="/recipes/")
 public class RecipeController {
@@ -33,6 +37,11 @@ public class RecipeController {
     }
 
 
+    @RequestMapping(value = "index")
+    public String firstpage() {
+        return "recipes/index";
+    }
+
     @RequestMapping(value = "/")
     public String dashboard(ModelMap model) {
         model.addAttribute("meats", BasicIngredients.Meat.values());
@@ -42,185 +51,236 @@ public class RecipeController {
         model.addAttribute("seasonings", BasicIngredients.Seasonings.values());
         model.addAttribute("grain", BasicIngredients.Grains.values());
         model.addAttribute("dairy", BasicIngredients.Dairy.values());
+        return "recipes/recipeSearch";
+    }
+
+
+    @RequestMapping(value = "findByVeg")
+    public String findByVeg(String veggie, ModelMap modelMap, String ONIONS, String TOMATOES, String CHERRY_TOMATOES,
+                            String GARLIC, String GREEN_PEPPERS, String BELL_PEPPERS, String BANANA_PEPPERS, String
+                                    SUMMER_SQUASH, String SPAGHETTI_SQUASH, String BUTTERNUT_SQUASH, String POTATOES,
+                            String PUMPKIN, String BROCCOLI, String BEANS, String GREEN_BEANS, String CARROTS, String CORN, String
+                                    ASPEARAGUS, String BRUSSELL_SPROUTS, String ZUCCINI, String LETTUCE,
+                            String BEETS, String PEAS, String MUSHROOMS, String SWEET_POTATOES, String NONE) {
+
+        if (veggie != null) {
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(NONE)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(ONIONS)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(TOMATOES)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(CHERRY_TOMATOES)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(GARLIC)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(GREEN_PEPPERS)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BELL_PEPPERS)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BANANA_PEPPERS)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(SUMMER_SQUASH)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(SPAGHETTI_SQUASH)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BUTTERNUT_SQUASH)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(POTATOES)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(PUMPKIN)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BROCCOLI)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BEANS)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(GREEN_BEANS)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(CARROTS)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(CORN)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(ASPEARAGUS)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BRUSSELL_SPROUTS)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(ZUCCINI)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(LETTUCE)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BEETS)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(PEAS)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(MUSHROOMS)));
+            modelMap.put("recipesByVeg", basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(SWEET_POTATOES)));
+
+            return "recipes/error";
+
+
+        } else if (veggie == null) {
+
+        }
+        return "recipes/error";
+    }
+
+    @RequestMapping(value = "findByMeat")
+    public String findByMeat(String meat, ModelMap modelMap, String TURKEY, String BEEF, String PORK, String CHICKEN, String SAUSAGE, String
+            FRANKS, String HAM, String NONE) {
+
+        if (meat != null) {
+
+            modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(NONE)));
+            modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(BEEF)));
+            modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(PORK)));
+            modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(CHICKEN)));
+            modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(SAUSAGE)));
+            modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(FRANKS)));
+            modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(HAM)));
+            modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(TURKEY)));
+
+            return "recipes/error";
+        } else if (meat == null) {
+
+        }
+        return "recipes/error";
+    }
+
+    @RequestMapping(value = "findByFruit")
+    public String findByFruit(String fruit, ModelMap modelMap, String APPLES, String
+            ORANGES, String STRAWBERRIES, String RASPBERRIES, String WATERMELON,
+                              String BLUEBERRIES, String BLACKBERRIES, String GRAPES, String CRANBERRIES, String PINEAPPLE, String
+                                      COCONUT, String MANGO, String PEARS, String PEACHES, String CANTELOUPE,
+                              String GRAPEFRUIT, String BANANA, String AVACADOS, String KIWI, String NONE) {
+
+        if (fruit == null) {
+
+//            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(NONE)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(APPLES)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(ORANGES)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(STRAWBERRIES)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(RASPBERRIES)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(WATERMELON)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(BLUEBERRIES)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(BLACKBERRIES)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(GRAPES)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(CRANBERRIES)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(PINEAPPLE)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(COCONUT)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(MANGO)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(PEARS)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(PEACHES)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(CANTELOUPE)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(GRAPEFRUIT)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(BANANA)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(AVACADOS)));
+            modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(KIWI)));
+
+            return "recipes/findByFruit";
+        } else if (fruit != null) {
+
+        }
         return "recipes/index";
     }
 
 
-
-
-@RequestMapping(value = "findByVeg")
-    public  String findByVeg(String veggie, ModelMap modelMap,  String ONIONS, String TOMATOES, String CHERRY_TOMATOES,
-                             String GARLIC, String GREEN_PEPPERS, String BELL_PEPPERS, String BANANA_PEPPERS, String
-                                     SUMMER_SQUASH, String SPAGHETTI_SQUASH, String BUTTERNUT_SQUASH, String POTATOES,
-                             String PUMPKIN, String BROCCOLI, String BEANS, String GREEN_BEANS, String CARROTS, String CORN, String
-                                     ASPEARAGUS, String BRUSSELL_SPROUTS, String ZUCCINI, String LETTUCE,
-                             String BEETS, String PEAS, String MUSHROOMS, String SWEET_POTATOES){
-
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(ONIONS)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(TOMATOES)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(CHERRY_TOMATOES)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(GARLIC)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(GREEN_PEPPERS)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BELL_PEPPERS)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BANANA_PEPPERS)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(SUMMER_SQUASH)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(SPAGHETTI_SQUASH)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BUTTERNUT_SQUASH)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(POTATOES)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(PUMPKIN)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BROCCOLI)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BEANS)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(GREEN_BEANS)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(CARROTS)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(CORN)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(ASPEARAGUS)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BRUSSELL_SPROUTS)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(ZUCCINI)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(LETTUCE)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(BEETS)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(PEAS)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(MUSHROOMS)));
-    modelMap.put("recipesByVeg",basicIngredientsDAO.findByVeggies(BasicIngredients.Veggies.valueOf(SWEET_POTATOES)));
-
-    return "recipes/findByVeg";
-}
-
-@RequestMapping(value = "findByMeat")
-    public String findByMeat(String meat, ModelMap modelMap, String TURKEY, String BEEF, String PORK, String CHICKEN, String SAUSAGE, String
-        FRANKS, String HAM) {
-
-    modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(BEEF)));
-    modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(PORK)));
-    modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(CHICKEN)));
-    modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(SAUSAGE)));
-    modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(FRANKS)));
-    modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(HAM)));
-    modelMap.put("recipesByMeat", basicIngredientsDAO.findByMeat(BasicIngredients.Meat.valueOf(TURKEY)));
-
-    return "recipes/findByMeat";
-}
-
-@RequestMapping(value = "findByFruit")
-    public String findByFruit(String fruit, ModelMap modelMap, String APPLES, String
-        ORANGES, String STRAWBERRIES, String RASPBERRIES, String WATERMELON,
-                              String BLUEBERRIES, String BLACKBERRIES, String GRAPES, String CRANBERRIES, String PINEAPPLE, String
-                                      COCONUT, String MANGO, String PEARS, String PEACHES, String CANTELOUPE,
-                              String GRAPEFRUIT, String BANANA, String AVACADOS, String KIWI) {
-
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(APPLES)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(ORANGES)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(STRAWBERRIES)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(RASPBERRIES)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(WATERMELON)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(BLUEBERRIES)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(BLACKBERRIES)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(GRAPES)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(CRANBERRIES)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(PINEAPPLE)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(COCONUT)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(MANGO)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(PEARS)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(PEACHES)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(CANTELOUPE)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(GRAPEFRUIT)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(BANANA)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(AVACADOS)));
-    modelMap.put("recipesByFruit", basicIngredientsDAO.findByFruits(BasicIngredients.Fruits.valueOf(KIWI)));
-
-            return "recipes/findByFruit";
-}
-
-@RequestMapping(value = "findByFish")
+    @RequestMapping(value = "findByFish")
     public String findByFish(String fish, ModelMap modelMap, String TUNA, String SALMON, String
-        SQUID, String OCTOPUS, String CRAB, String COD, String TROUT) {
+            SQUID, String OCTOPUS, String CRAB, String COD, String TROUT, String HALIBUT, String NONE) {
 
-    modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(TUNA)));
-    modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(SALMON)));
-    modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(SQUID)));
-    modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(OCTOPUS)));
-    modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(CRAB)));
-    modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(COD)));
-    modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(TROUT)));
+        if (fish != null) {
 
-    return "recipes/findByFish";
-}
+            modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(NONE)));
+            modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(TUNA)));
+            modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(SALMON)));
+            modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(SQUID)));
+            modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(OCTOPUS)));
+            modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(CRAB)));
+            modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(COD)));
+            modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(TROUT)));
+            modelMap.put("recipesByFish", basicIngredientsDAO.findByFish(BasicIngredients.Fish.valueOf(HALIBUT)));
 
-@RequestMapping(value = "findBySeasoning")
+            return "recipes/findByFish";
+        } else if (fish == null) {
+        }
+        return "recipes/index";
+    }
+
+
+    @RequestMapping(value = "findBySeasoning")
     public String findBySeasons(String seasons, ModelMap modelMap, String CINNAMON, String PAPRIKA,
                                 String TURMERIC, String GINGER, String NUTMEG, String TARMORIND, String
-                                CUMIN, String OREGANO, String CORDAMON, String SALT, String PEPPER,
-                                String CLOVES, String CHILI_POWDER){
+                                        CUMIN, String OREGANO, String CORDAMON, String SALT, String PEPPER,
+                                String CLOVES, String CHILI_POWDER, String NONE) {
 
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(CINNAMON)));
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(PAPRIKA)));
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(TURMERIC)));
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(GINGER)));
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(NUTMEG)));
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(TARMORIND)));
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(CUMIN)));
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(OREGANO)));
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(CORDAMON)));
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(SALT)));
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(PEPPER)));
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(CLOVES)));
-    modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(CHILI_POWDER)));
+        if (seasons != null) {
 
-    return "recipes/findBySeasoning";
-}
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(NONE)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(CINNAMON)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(PAPRIKA)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(TURMERIC)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(GINGER)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(NUTMEG)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(TARMORIND)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(CUMIN)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(OREGANO)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(CORDAMON)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(SALT)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(PEPPER)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(CLOVES)));
+            modelMap.put("recipesBySeasoning", basicIngredientsDAO.findBySeasonings(BasicIngredients.Seasonings.valueOf(CHILI_POWDER)));
 
-@RequestMapping(value = "findByGrain")
+            return "recipes/findBySeasoning";
+        } else if (seasons == null) {
+
+        }
+        return "recipes/index";
+    }
+
+    @RequestMapping(value = "findByGrain")
     public String findByGrains(String grains, ModelMap modelMap, String SPAGHETTI, String TORTELLINI, String SHELL, String
-                                MACARONI, String LASAGNA, String PENNE, String LINGUINI, String FORFALLI, String ANGEL_HAIR,
+            MACARONI, String LASAGNA, String PENNE, String LINGUINI, String FORFALLI, String ANGEL_HAIR,
                                String WHITE_BREAD, String WHEAT_BREAD, String RYE, String SOUR_DOUGH, String CORN_BREAD, String
                                        WHITE_RICE, String BROWN_RICE, String JASMINE, String WHITE_FLOUR, String WHEAT_FLOUR,
                                String COCONUT_FLOUR, String WHITE_TORTILLA, String WHEAT_TORTILLA, String CORN_TORTILLA, String
-                                       OATS) {
+                                       OATS, String NONE) {
 
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(SPAGHETTI)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(TORTELLINI)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(SHELL)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(MACARONI)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(LASAGNA)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(PENNE)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(LINGUINI)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(FORFALLI)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(ANGEL_HAIR)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHITE_BREAD)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHEAT_BREAD)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(RYE)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(SOUR_DOUGH)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(CORN_BREAD)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHITE_RICE)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(BROWN_RICE)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(JASMINE)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHITE_FLOUR)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHEAT_FLOUR)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(COCONUT_FLOUR)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHITE_TORTILLA)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHEAT_TORTILLA)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(CORN_TORTILLA)));
-    modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(OATS)));
+        if (grains != null) {
 
-    return "recipes/findByGrain";
-}
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(NONE)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(SPAGHETTI)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(TORTELLINI)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(SHELL)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(MACARONI)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(LASAGNA)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(PENNE)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(LINGUINI)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(FORFALLI)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(ANGEL_HAIR)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHITE_BREAD)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHEAT_BREAD)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(RYE)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(SOUR_DOUGH)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(CORN_BREAD)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHITE_RICE)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(BROWN_RICE)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(JASMINE)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHITE_FLOUR)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHEAT_FLOUR)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(COCONUT_FLOUR)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHITE_TORTILLA)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(WHEAT_TORTILLA)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(CORN_TORTILLA)));
+            modelMap.put("recipesByGrain", basicIngredientsDAO.findByGrains(BasicIngredients.Grains.valueOf(OATS)));
+
+            return "recipes/findByGrain";
+        } else if (grains == null) {
+
+        }
+        return "recipes/index";
+    }
 
 
-@RequestMapping(value = "findByDairy")
+    @RequestMapping(value = "findByDairy")
     public String findByDairy(String dairy, ModelMap modelMap, String CHOCOLATE_MILK, String MILK, String BLOCK_CHEESE, String SHREDDED_CHEESE,
-                              String YOGURT, String COTTAGE_CHEESE, String CREAM_CHEESE, String SOUR_CREAM, String EGGS) {
+                              String YOGURT, String COTTAGE_CHEESE, String CREAM_CHEESE, String SOUR_CREAM, String EGGS, String NONE) {
 
-    modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(CHOCOLATE_MILK)));
-    modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(MILK)));
-    modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(BLOCK_CHEESE)));
-    modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(SHREDDED_CHEESE)));
-    modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(YOGURT)));
-    modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(COTTAGE_CHEESE)));
-    modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(CREAM_CHEESE)));
-    modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(SOUR_CREAM)));
-    modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(EGGS)));
+        if (dairy != null) {
 
-    return "recipes/findByDairy";
+            modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(NONE)));
+            modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(CHOCOLATE_MILK)));
+            modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(MILK)));
+            modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(BLOCK_CHEESE)));
+            modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(SHREDDED_CHEESE)));
+            modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(YOGURT)));
+            modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(COTTAGE_CHEESE)));
+            modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(CREAM_CHEESE)));
+            modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(SOUR_CREAM)));
+            modelMap.put("recipesByDairy", basicIngredientsDAO.findByDairy(BasicIngredients.Dairy.valueOf(EGGS)));
+
+            return "recipes/findByDairy";
+        } else if (dairy == null) {
+
+        }
+        return "recipes/index";
+    }
 }
 
 
-}
+
