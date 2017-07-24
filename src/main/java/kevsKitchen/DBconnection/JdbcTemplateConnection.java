@@ -65,7 +65,7 @@ public class JdbcTemplateConnection {
                 se.printStackTrace();
             }
         }
-        System.out.println("Goodbye!");
+        System.out.println("Peace out!");
 
 //    static final String JDBC_DRIVER = "org.hsqldb.jdbcDriver";
 //    static final String DB_URL ="jdbc:hsqldb:db_file";
